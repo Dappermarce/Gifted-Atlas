@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://giftedatlas.onrender.com/sitemap.xml

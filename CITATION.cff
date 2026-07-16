@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "Si utilizas Gifted Atlas en docencia o investigación, cita esta versión."
+title: "Gifted Atlas: Psicología de las altas capacidades"
+type: software
+authors:
+  - family-names: "Kroll"
+    given-names: "Marcelo Carmelino"
+version: 2.0.0
+date-released: 2026-07-15
+url: "https://giftedatlas.onrender.com/"
+repository-code: "https://github.com/Dappermarce/Gifted-Atlas"
+abstract: "Atlas educativo bilingüe sobre altas capacidades, inteligencia, identificación, educación y neurociencia."
+keywords:
+  - giftedness
+  - high abilities
+  - psychology
+  - education
+  - neuroscience
+license: MIT
