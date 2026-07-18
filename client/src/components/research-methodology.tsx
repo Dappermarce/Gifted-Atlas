@@ -50,18 +50,80 @@ export default function ResearchMethodology() {
         { name: "Renzulli Center for Creativity", location: "University of Connecticut, USA", focus: "Creativity and talent models", description: "Pioneer of the three-ring model and educational enrichment" },
       ];
 
-  const evidenceQuality = lang === 'es'
+  const evidenceMatrix = lang === 'es'
     ? [
-        { level: "Nivel 1", description: "Revisiones sistemáticas y metaanálisis", studies: "Depende de la pregunta y de los estudios disponibles", participants: "Variable", strength: "Síntesis fuerte si la evidencia incluida es adecuada" },
-        { level: "Nivel 2", description: "Estudios longitudinales y ensayos controlados", studies: "Diseños individuales de seguimiento o intervención", participants: "Variable", strength: "Alta para ciertas preguntas, con límites de muestra y diseño" },
-        { level: "Nivel 3", description: "Estudios de cohorte y caso-control", studies: "Diseños observacionales", participants: "Variable", strength: "Evidencia moderada" },
-        { level: "Nivel 4", description: "Estudios de caso y series clínicas", studies: "Reportes individuales", participants: "Pequeños grupos", strength: "Evidencia preliminar" },
+        {
+          question: "Intervención",
+          purpose: "¿Qué cambia cuando se aplica una estrategia?",
+          designs: "Ensayos controlados, diseños cuasiexperimentales y revisiones sistemáticas",
+          contribution: "Eficacia, efectividad y posibles efectos no previstos",
+          limits: "Implementación, comparación, duración y transferencia entre contextos",
+        },
+        {
+          question: "Identificación",
+          purpose: "¿A quién identifica un procedimiento y con qué precisión?",
+          designs: "Estudios de validez y confiabilidad, precisión de clasificación, equidad e invarianza",
+          contribution: "Precisión, consistencia y diferencias entre grupos o contextos",
+          limits: "Normas, edición, idioma, punto de corte, acceso y consecuencias de la decisión",
+        },
+        {
+          question: "Prevalencia",
+          purpose: "¿Con qué frecuencia aparece según una definición?",
+          designs: "Muestreo probabilístico, encuestas representativas, registros y metaanálisis de prevalencia",
+          contribution: "Estimaciones poblacionales con intervalos de incertidumbre",
+          limits: "Definición utilizada, no respuesta, cobertura, política y acceso a evaluación",
+        },
+        {
+          question: "Desarrollo",
+          purpose: "¿Cómo cambian los perfiles y las trayectorias con el tiempo?",
+          designs: "Cohortes longitudinales, medidas repetidas y modelos de crecimiento",
+          contribution: "Secuencia temporal, estabilidad, cambio y diversidad de trayectorias",
+          limits: "Abandono, cohortes seleccionadas y variables de confusión; no demuestra causalidad por sí solo",
+        },
+        {
+          question: "Neurociencia",
+          purpose: "¿Qué asociaciones grupales aparecen en redes y procesos cerebrales?",
+          designs: "Neuroimagen prerregistrada y multimodal, replicaciones y metaanálisis",
+          contribution: "Convergencia entre tareas, redes y mecanismos candidatos",
+          limits: "Muestras pequeñas o heterogéneas, tareas y análisis variables; no identifica a una persona",
+        },
       ]
     : [
-        { level: "Level 1", description: "Systematic reviews and meta-analyses", studies: "Depends on the question and available studies", participants: "Variable", strength: "Strong synthesis when the included evidence is suitable" },
-        { level: "Level 2", description: "Longitudinal studies and controlled trials", studies: "Individual follow-up or intervention designs", participants: "Variable", strength: "High for certain questions, with sample and design limits" },
-        { level: "Level 3", description: "Cohort and case-control studies", studies: "Observational designs", participants: "Variable", strength: "Moderate evidence" },
-        { level: "Level 4", description: "Case studies and clinical series", studies: "Individual reports", participants: "Small groups", strength: "Preliminary evidence" },
+        {
+          question: "Intervention",
+          purpose: "What changes when a strategy is applied?",
+          designs: "Controlled trials, quasi-experimental designs, and systematic reviews",
+          contribution: "Efficacy, effectiveness, and possible unintended effects",
+          limits: "Implementation, comparator, duration, and transfer across settings",
+        },
+        {
+          question: "Identification",
+          purpose: "Who does a procedure identify, and how accurately?",
+          designs: "Validity and reliability studies, classification accuracy, fairness, and invariance",
+          contribution: "Accuracy, consistency, and differences across groups or settings",
+          limits: "Norms, edition, language, cut score, access, and consequences of the decision",
+        },
+        {
+          question: "Prevalence",
+          purpose: "How often does it occur under a stated definition?",
+          designs: "Probability sampling, representative surveys, registries, and prevalence meta-analyses",
+          contribution: "Population estimates with uncertainty intervals",
+          limits: "Definition, nonresponse, coverage, policy, and access to assessment",
+        },
+        {
+          question: "Development",
+          purpose: "How do profiles and trajectories change over time?",
+          designs: "Longitudinal cohorts, repeated measures, and growth models",
+          contribution: "Temporal sequence, stability, change, and diversity of trajectories",
+          limits: "Attrition, selected cohorts, and confounding; it does not establish causality by itself",
+        },
+        {
+          question: "Neuroscience",
+          purpose: "Which group-level associations appear across brain networks and processes?",
+          designs: "Preregistered and multimodal neuroimaging, replications, and meta-analyses",
+          contribution: "Convergence across tasks, networks, and candidate mechanisms",
+          limits: "Small or heterogeneous samples and variable tasks or pipelines; not an individual identifier",
+        },
       ];
 
   const labels = lang === 'es'
@@ -78,8 +140,11 @@ export default function ResearchMethodology() {
         recentNote: "Cada entrada corresponde a una referencia identificable incluida en la bibliografía; su alcance depende del diseño y la muestra.",
         leadingCenters: "Centros Líderes en Investigación",
         centersNote: "Centros líderes en investigación en educación de altas capacidades",
-        evidenceHierarchy: "Jerarquía de Evidencia Científica",
-        evidenceNote: "La fuerza del diseño depende de la pregunta: intervención, identificación, trayectoria, cultura y neurociencia requieren métodos distintos.",
+        evidenceMatrixTitle: "Matriz de evidencia según la pregunta",
+        evidenceNote: "No existe un diseño universalmente superior. La evidencia más útil es la que corresponde a la pregunta, mide bien sus variables y puede sostenerse en otras muestras y contextos.",
+        matrixHeaders: ["Pregunta", "Diseños especialmente útiles", "Qué pueden aportar", "Límites que deben revisarse"],
+        matrixConclusionTitle: "Cómo leer la matriz:",
+        matrixConclusion: "Una revisión no corrige estudios débiles; un ensayo no estima por sí solo la prevalencia; una cohorte no prueba automáticamente causalidad; y una imagen cerebral no identifica altas capacidades en una persona. La confianza aumenta cuando varios métodos adecuados convergen.",
         noteText: "Existe más de un siglo de investigación, pero antigüedad no equivale a certeza. La calidad y la aplicabilidad deben revisarse para cada afirmación, población y contexto.",
         noteLabel: "Nota:",
       }
@@ -96,8 +161,11 @@ export default function ResearchMethodology() {
         recentNote: "Each entry corresponds to an identifiable reference in the bibliography; its scope depends on design and sample.",
         leadingCenters: "Leading Research Centers",
         centersNote: "Leading centers in high-ability education research",
-        evidenceHierarchy: "Scientific Evidence Hierarchy",
-        evidenceNote: "Design strength depends on the question: interventions, identification, trajectories, culture, and neuroscience require different methods.",
+        evidenceMatrixTitle: "Evidence matrix by research question",
+        evidenceNote: "No design is universally superior. The most useful evidence matches the question, measures its variables well, and can hold across samples and settings.",
+        matrixHeaders: ["Question", "Especially useful designs", "What they can contribute", "Limits to examine"],
+        matrixConclusionTitle: "How to read the matrix:",
+        matrixConclusion: "A review cannot repair weak studies; a trial does not estimate prevalence by itself; a cohort does not automatically establish causality; and a brain image does not identify giftedness in one person. Confidence grows when several suitable methods converge.",
         noteText: "More than a century of research exists, but age does not equal certainty. Quality and applicability must be assessed for each claim, population, and context.",
         noteLabel: "Note:",
       };
@@ -176,21 +244,36 @@ export default function ResearchMethodology() {
         </Card>
         <Card className="shadow-lg">
           <CardContent className="p-8">
-            <h3 className="text-2xl font-semibold text-dark-slate mb-6 text-center">{labels.evidenceHierarchy}</h3>
+            <h3 className="text-2xl font-semibold text-dark-slate mb-4 text-center">{labels.evidenceMatrixTitle}</h3>
             <p className="text-gray-600 text-center mb-8">{labels.evidenceNote}</p>
-            <div className="space-y-4">
-              {evidenceQuality.map((level, index) => (
-                <div key={index} className="border rounded-lg p-4">
-                  <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-center">
-                    <div className="text-center"><Badge variant="default" className="text-sm font-bold">{level.level}</Badge></div>
-                    <div><h4 className="font-semibold text-dark-slate">{level.description}</h4></div>
-                    <div><p className="text-sm text-gray-600">{level.studies}</p><p className="text-xs text-gray-500">{level.participants}</p></div>
-                    <div className="text-center"><Badge variant={index === 0 ? 'default' : index === 1 ? 'secondary' : 'outline'} className="text-xs">{level.strength}</Badge></div>
-                  </div>
-                </div>
-              ))}
+            <div className="overflow-x-auto rounded-xl border border-slate-200">
+              <table className="w-full min-w-[920px] border-collapse text-left">
+                <thead className="bg-slate-900 text-white">
+                  <tr>
+                    {labels.matrixHeaders.map((header) => (
+                      <th key={header} scope="col" className="px-5 py-4 text-sm font-semibold">{header}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-200 bg-white">
+                  {evidenceMatrix.map((row) => (
+                    <tr key={row.question} className="align-top transition-colors hover:bg-blue-50/60">
+                      <th scope="row" className="px-5 py-5 w-[20%]">
+                        <Badge variant="default" className="mb-2">{row.question}</Badge>
+                        <p className="text-sm font-medium leading-relaxed text-dark-slate">{row.purpose}</p>
+                      </th>
+                      <td className="px-5 py-5 w-[27%] text-sm leading-relaxed text-slate-700">{row.designs}</td>
+                      <td className="px-5 py-5 w-[25%] text-sm leading-relaxed text-slate-700">{row.contribution}</td>
+                      <td className="px-5 py-5 w-[28%] text-sm leading-relaxed text-slate-600">{row.limits}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
-            <div className="mt-6 bg-yellow-50 p-4 rounded-lg">
+            <div className="mt-6 bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg">
+              <p className="text-sm text-blue-900"><strong>{labels.matrixConclusionTitle}</strong> {labels.matrixConclusion}</p>
+            </div>
+            <div className="mt-4 bg-yellow-50 p-4 rounded-lg">
               <p className="text-sm text-yellow-800"><strong>{labels.noteLabel}</strong> {labels.noteText}</p>
             </div>
           </CardContent>
