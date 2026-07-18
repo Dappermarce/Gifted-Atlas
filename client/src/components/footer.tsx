@@ -11,31 +11,31 @@ export default function Footer() {
 
   const t = lang === 'es'
     ? {
-        brand: "Psicología de la Superdotación",
+        brand: "Gifted Atlas — Psicología de las Altas Capacidades",
         tagline: "Un atlas para entender las altas capacidades sin convertir una persona en una cifra.",
         disclaimer: "La evidencia primero. Las certezas solo cuando se las han ganado.",
         colResources: "Recursos", assessments: "Evaluaciones", articles: "Artículos Científicos", books: "Libros Especializados", centers: "Centros de Investigación",
         colTopics: "Temas", giftedness: "Superdotación", research: "Investigación", psychiatry: "Psiquiatría", assessment: "Evaluación",
         colInfo: "Criterio editorial", info1: "Fuentes trazables", info2: "Revisión: julio de 2026", info3: "Incertidumbre explicada",
-        copyright: "© 2026 Psicología de la Superdotación. Todos los derechos reservados.",
+        copyright: "© 2026 Gifted Atlas — Psicología de las Altas Capacidades. Todos los derechos reservados.",
         medicalDisclaimer: "Este sitio web no constituye asesoramiento médico o psicológico profesional.",
         developedBy: "Desarrollado por", createdNote: "Revisión editorial: julio de 2026",
         contact: "Contacto:", cite: "Cita sugerida:",
-        citation: "Marcelo, C. K. (2026). Gifted Atlas: Psicología de las altas capacidades.",
+        citation: "Marcelo C. K. (2026). Gifted Atlas — Psicología de las Altas Capacidades.",
         sourceCode: "Código y documentación académica",
       }
     : {
-        brand: "Psychology of Giftedness",
+        brand: "Gifted Atlas — Psychology of Giftedness",
         tagline: "An atlas for understanding giftedness without turning a person into a number.",
         disclaimer: "Evidence first. Certainty only when it has been earned.",
         colResources: "Resources", assessments: "Assessments", articles: "Scientific Articles", books: "Specialized Books", centers: "Research Centers",
         colTopics: "Topics", giftedness: "Giftedness", research: "Research", psychiatry: "Psychiatry", assessment: "Assessment",
         colInfo: "Editorial standard", info1: "Traceable sources", info2: "Reviewed: July 2026", info3: "Uncertainty explained",
-        copyright: "© 2026 Psychology of Giftedness. All rights reserved.",
+        copyright: "© 2026 Gifted Atlas — Psychology of Giftedness. All rights reserved.",
         medicalDisclaimer: "This website does not constitute professional medical or psychological advice.",
         developedBy: "Developed by", createdNote: "Editorial review: July 2026",
         contact: "Contact:", cite: "Suggested citation:",
-        citation: "Marcelo, C. K. (2026). Gifted Atlas: Psychology of giftedness.",
+        citation: "Marcelo C. K. (2026). Gifted Atlas — Psychology of Giftedness.",
         sourceCode: "Code and academic documentation",
       };
 
