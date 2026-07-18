@@ -18,8 +18,8 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     document.documentElement.lang = lang;
     document.title = lang === "es"
-      ? "Gifted Atlas | Psicología de las altas capacidades"
-      : "Gifted Atlas | Psychology of Giftedness";
+      ? "Gifted Atlas — Psicología de las Altas Capacidades"
+      : "Gifted Atlas — Psychology of Giftedness";
   }, [lang]);
   return (
     <LanguageContext.Provider value={{ lang, toggleLang }}>
