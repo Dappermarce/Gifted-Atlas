@@ -1,11 +1,10 @@
 cff-version: 1.2.0
-message: "Si utilizas Gifted Atlas en docencia o investigación, cita esta versión."
-title: "Gifted Atlas: Psicología de las altas capacidades"
+message: "Si utilizas Gifted Atlas en docencia o investigación, por favor cítalo."
+title: "Gifted Atlas — Psicología de las Altas Capacidades"
 type: software
 authors:
-  - family-names: "Kroll"
-    given-names: "Marcelo Carmelino"
-version: 2.0.0
+  - family-names: "C. K."
+    given-names: "Marcelo"
 date-released: 2026-07-15
 url: "https://giftedatlas.onrender.com/"
 repository-code: "https://github.com/Dappermarce/Gifted-Atlas"
