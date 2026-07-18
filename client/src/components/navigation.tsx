@@ -73,7 +73,7 @@ export default function Navigation() {
         { id: 'bibliografia', label: 'Bibliography' },
       ];
 
-  const title = lang === 'es' ? 'Psicología de la Superdotación' : 'Psychology of Giftedness';
+  const brandDescriptor = lang === 'es' ? 'Psicología de las Altas Capacidades' : 'Psychology of Giftedness';
 
   return (
     <nav
@@ -99,7 +99,7 @@ export default function Navigation() {
                 scrolled ? 'text-slate-800' : 'text-white'
               }`}
             >
-              {title}
+              Gifted Atlas<span className="hidden 2xl:inline font-normal opacity-80"> — {brandDescriptor}</span>
             </span>
           </button>
 
