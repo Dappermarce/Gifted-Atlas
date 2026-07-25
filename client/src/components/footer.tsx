@@ -81,8 +81,8 @@ export default function Footer() {
           <p className="mt-2">{t.developedBy}{" "}<strong>Marcelo C. K.</strong></p>
           <p className="mt-1 text-gray-400 text-sm">
             {t.contact}{" "}
-            <a href="mailto:MarceloCK@proton.me" className="hover:text-white transition-colors underline underline-offset-2">
-              MarceloCK@proton.me
+            <a href="mailto:Marcelo.CK@outlook.com" className="hover:text-white transition-colors underline underline-offset-2">
+              Marcelo.CK@outlook.com
             </a>
           </p>
           <p className="mt-4 text-xs text-gray-500"><strong>{t.cite}</strong> {t.citation}</p>
