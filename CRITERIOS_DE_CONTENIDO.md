@@ -1,4 +1,4 @@
-# Política editorial de Gifted Atlas
+# Criterios de contenido de Gifted Atlas
 
 ## Propósito
 
@@ -26,6 +26,8 @@ Las fuentes primarias tienen prioridad para cifras, instrumentos y resultados co
 - Explicar que los umbrales psicométricos incluyen error de medida e intervalos de confianza.
 - Marcar con claridad los desacuerdos y vacíos de evidencia.
 
-## Revisión
+## Revisión profesional y correcciones
 
-La revisión editorial vigente corresponde a julio de 2026. Las correcciones documentadas tienen prioridad sobre la defensa de una redacción anterior: si algo no se sostiene, se cambia.
+Este proyecto fue creado y desarrollado de manera independiente por Marcelo C. K. Su contenido contó con la revisión y las observaciones de psicólogos y psiquiatras. La selección de fuentes, la redacción y el mantenimiento del proyecto corresponden al autor.
+
+Si una afirmación queda desactualizada, no cuenta con evidencia suficiente o puede explicarse con mayor claridad, se corrige o se retira.
