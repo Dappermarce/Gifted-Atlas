@@ -36,7 +36,7 @@ Autoría y revisión profesional
 
 Documentación del proyecto
 
-- `CITATION.cff`: metadatos para citar la versión 2.0.
+- `CITATION.cff`: información de autoría y citación del proyecto.
 - `CRITERIOS_DE_CONTENIDO.md`: fuentes, voz, límites y reglas de inferencia.
 - `CONTRIBUTING.md`: procedimiento para proponer correcciones verificables.
 
