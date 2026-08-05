@@ -37,7 +37,7 @@ Autoría y revisión profesional
 Documentación del proyecto
 
 - `CITATION.cff`: metadatos para citar la versión 2.0.
-- `EDITORIAL_POLICY.md`: fuentes, voz, límites y reglas de inferencia.
+- `CRITERIOS_DE_CONTENIDO.md`: fuentes, voz, límites y reglas de inferencia.
 - `CONTRIBUTING.md`: procedimiento para proponer correcciones verificables.
 
 La voz del proyecto busca explicar conceptos complejos sin convertirlos en frases frías: claridad primero, términos técnicos cuando hacen falta y certeza solo cuando la evidencia se la ha ganado.
