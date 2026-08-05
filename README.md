@@ -2,7 +2,7 @@ Gifted Atlas · Psychology of Giftedness
 
 Atlas educativo bilingüe sobre altas capacidades, inteligencia y desarrollo del talento. Está dirigido a estudiantes, familias, docentes, profesionales y personas interesadas en la psicología y la educación.
 
-Principios editoriales
+Criterios del contenido
 
 - Las altas capacidades se presentan como un campo multidimensional y dependiente del contexto.
 - Un umbral de CI puede formar parte de algunos criterios, pero no es una definición universal.
@@ -30,11 +30,11 @@ npm install
 npm run dev
 ```
 
-Revisión
+Autoría y revisión profesional
 
-Última revisión editorial: julio de 2026.
+Última revisión: julio de 2026.
 
-Documentación académica
+Documentación del proyecto
 
 - `CITATION.cff`: metadatos para citar la versión 2.0.
 - `EDITORIAL_POLICY.md`: fuentes, voz, límites y reglas de inferencia.
