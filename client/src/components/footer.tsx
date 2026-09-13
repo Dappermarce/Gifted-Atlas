@@ -34,7 +34,7 @@ export default function Footer() {
 
           colInfo: "Sobre el proyecto",
           info1: "Creado de forma independiente",
-          info2: "Contenido revisado por psicólogos y psiquiatras",
+          info2: "Contenido educativo con límites de evidencia",
           info3: "Fuentes citadas en la bibliografía",
 
           copyright:
@@ -44,6 +44,7 @@ export default function Footer() {
           developedBy: "Creado y desarrollado por",
           contact: "Contacto:",
           sourceCode: "Código y documentación del proyecto",
+          reviewed: "Última revisión: septiembre de 2026",
         }
       : {
           brand: "Gifted Atlas — Psychology of Giftedness",
@@ -66,7 +67,7 @@ export default function Footer() {
 
           colInfo: "About the project",
           info1: "Created independently",
-          info2: "Content reviewed by psychologists and psychiatrists",
+          info2: "Educational content with clear evidence limits",
           info3: "Sources cited in the bibliography",
 
           copyright:
@@ -76,6 +77,7 @@ export default function Footer() {
           developedBy: "Created and developed by",
           contact: "Contact:",
           sourceCode: "Code and project documentation",
+          reviewed: "Last reviewed: September 2026",
         };
 
   return (
@@ -204,6 +206,7 @@ export default function Footer() {
           <p className="mt-2 text-sm text-gray-500">
             {t.medicalDisclaimer}
           </p>
+          <p className="mt-2 text-sm text-gray-500">{t.reviewed}</p>
 
           <p className="mt-2">
             {t.developedBy} <strong>Marcelo C. K.</strong>
