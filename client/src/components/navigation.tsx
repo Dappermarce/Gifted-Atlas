@@ -211,7 +211,7 @@ export default function Navigation() {
                   <p>{group.description}</p>
                   <div className="atlas-thread" aria-hidden="true"><i /><i /><i /><i /></div>
                 </div>
-                <div className="atlas-panel-links">
+                <div className={`atlas-panel-links ${group.items.length === 2 ? "is-compact" : ""} ${group.items.length % 2 === 1 ? "is-odd" : ""}`}>
                   {group.items.map(item => (
                     <button key={item.id} onClick={() => goTo(item.id)}>
                       <span><strong>{item.label}</strong><small>{item.note}</small></span><ArrowUpRight size={16} />

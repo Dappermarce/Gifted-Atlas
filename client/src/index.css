@@ -407,6 +407,16 @@ h1, h2, .gifted-index-card strong, .gifted-milestone h3, .atlas-panel-story h2 {
 .atlas-panel-links strong { font-size: 0.84rem; }
 .atlas-panel-links small { margin-top: 0.32rem; color: #9e95a9; font-size: 0.65rem; line-height: 1.4; }
 .atlas-panel-links svg { flex: none; color: #a98bea; }
+.atlas-panel-links.is-compact { align-content: center; }
+.atlas-panel-links.is-compact button {
+  min-height: 112px;
+  align-items: center;
+}
+.atlas-panel-links.is-odd > button:last-child {
+  grid-column: 1 / -1;
+  justify-self: center;
+  width: calc(50% - 0.275rem);
+}
 
 .gifted-hero { padding: 7.5rem 0 4rem; background: radial-gradient(circle at 76% 30%, rgba(126,80,205,0.25), transparent 24%), radial-gradient(circle at 16% 78%, rgba(79,45,132,0.2), transparent 28%), linear-gradient(140deg, #09070d 0%, #110c17 56%, #181020 100%); }
 .gifted-hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(197,177,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(197,177,255,0.05) 1px, transparent 1px); background-size: 68px 68px; mask-image: linear-gradient(to bottom, #000 0%, transparent 88%); }
@@ -692,6 +702,108 @@ h1, h2, .gifted-index-card strong, .gifted-milestone h3, .atlas-panel-story h2 {
 }
 .dark .brain-network-index-button { border-color: #392f42; background: #17131b; color: #eee8f2; }
 .dark .brain-network-index-button.is-active { background: #2a2033; }
+
+/* Longitudinal evidence and assessment use the same neutral editorial
+   surfaces as the rest of the atlas; color remains an accent, not a backdrop. */
+.longitudinal-section,
+.evaluation-flow-section {
+  background:
+    radial-gradient(circle at 85% 0%, rgba(118,81,214,0.1), transparent 36%),
+    #f5f2f8;
+}
+.longitudinal-card,
+.longitudinal-question-card,
+.evaluation-step-card {
+  border-color: #ddd3e5;
+  background: #ffffff;
+}
+.longitudinal-period { color: #6640ad; }
+.longitudinal-limit {
+  border-color: #dfd2e7;
+  background: #f4eef8;
+}
+.longitudinal-limit p { color: #55485f; }
+.longitudinal-question-icon { color: #7651d6; }
+.longitudinal-conclusion {
+  border: 1px solid #382c43;
+  background:
+    radial-gradient(circle at 82% 5%, rgba(139,92,246,0.22), transparent 34%),
+    #17121c;
+}
+.evaluation-disclaimer {
+  border-color: #cdbde0;
+  background: #eee7f5;
+  color: #563b70;
+}
+.evaluation-step-card { background: #ffffff !important; }
+.evaluation-note {
+  border-color: #d8c9e3;
+  background: #eee7f5;
+  color: #51405f;
+}
+.dark .longitudinal-section,
+.dark .evaluation-flow-section {
+  background-image: none;
+  background-color: #0d0a10;
+}
+.dark .longitudinal-section :is(h2, h3, h4),
+.dark .evaluation-flow-section :is(h2, h3) { color: #f4eef7 !important; }
+.dark .longitudinal-section > div > div:first-child p,
+.dark .evaluation-flow-section > div > div:first-child p { color: #c4bac9 !important; opacity: 1; }
+.dark .longitudinal-card,
+.dark .longitudinal-question-card,
+.dark .evaluation-step-card {
+  border-color: #392e43 !important;
+  background: #18131d !important;
+  color: #eee8f2;
+}
+.dark .longitudinal-card p,
+.dark .longitudinal-question-card p,
+.dark .evaluation-step-card p { color: #c8bdcf !important; opacity: 1; }
+.dark .longitudinal-period { color: #cbb2f5 !important; }
+.dark .longitudinal-limit {
+  border-color: #4a3958;
+  background: #241b2c;
+}
+.dark .longitudinal-limit p { color: #ded2e6 !important; }
+.dark .evaluation-disclaimer {
+  border-color: #5d4773;
+  background: #21182a;
+  color: #dfcff0;
+}
+.dark .evaluation-note {
+  border-color: #59456c;
+  background: #21182a;
+  color: #dfcff0;
+}
+.dark .evaluation-note p { color: #dfcff0 !important; }
+
+/* The footer deliberately echoes the hero instead of returning to blue. */
+.gifted-footer,
+.dark .gifted-footer {
+  border-top: 1px solid #2d2336;
+  background:
+    radial-gradient(circle at 76% 12%, rgba(126,80,205,0.22), transparent 30%),
+    linear-gradient(140deg, #09070d 0%, #110c17 56%, #181020 100%) !important;
+  color: #f4eef7;
+}
+.gifted-footer h4 { color: #eadff3; }
+.gifted-footer .text-gray-400,
+.gifted-footer .text-gray-500,
+.dark .gifted-footer .text-gray-400,
+.dark .gifted-footer .text-gray-500 { color: #c2b7ca !important; }
+.gifted-footer a,
+.gifted-footer button { color: #d8c9e8; }
+.gifted-footer a:hover,
+.gifted-footer a:focus-visible,
+.gifted-footer button:hover,
+.gifted-footer button:focus-visible { color: #ffffff; }
+.gifted-footer > div > div:last-child { border-top-color: #382c43; }
+
+@media (max-width: 900px) {
+  .atlas-panel-links.is-compact button { min-height: 0; align-items: flex-start; }
+  .atlas-panel-links.is-odd > button:last-child { grid-column: auto; width: 100%; }
+}
 
 @media (max-width: 780px) {
   .editorial-thread { grid-template-columns: 1fr; margin-inline: 1rem; }
