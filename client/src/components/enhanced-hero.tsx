@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Brain, Microscope } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useLanguage } from "@/contexts/language-context";
 
 export default function EnhancedHero() {
@@ -22,13 +22,6 @@ export default function EnhancedHero() {
         "Family and educational context significantly shapes how potential is expressed",
         "Variation across cultures in identification criteria is wide and well-documented",
       ];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentFact((prev) => (prev + 1) % facts.length);
-    }, 3500);
-    return () => clearInterval(interval);
-  }, [facts.length]);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -96,6 +89,7 @@ export default function EnhancedHero() {
               <p aria-live="polite" className="text-blue-200 text-xs sm:text-sm font-medium text-center leading-snug transition-all duration-700">
                 {facts[currentFact]}
               </p>
+              <button type="button" className="gifted-fact-next" onClick={() => setCurrentFact(previous => (previous + 1) % facts.length)}>{lang === 'es' ? 'Otra perspectiva' : 'Another perspective'} <span aria-hidden="true">→</span></button>
             </div>
           </div>
 

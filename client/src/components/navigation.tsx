@@ -148,7 +148,16 @@ export default function Navigation() {
 
   useEffect(() => {
     const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") { setOpenGroup(null); setMenuOpen(false); }
+      if (event.key === "Escape") {
+        const active = document.activeElement;
+        const group = active instanceof HTMLElement ? active.closest('.atlas-nav-group') : null;
+        group?.querySelector<HTMLButtonElement>('.atlas-nav-trigger')?.focus();
+        setOpenGroup(null);
+        if (!group) {
+          if (active instanceof HTMLElement && active.closest('.atlas-nav')) document.querySelector<HTMLButtonElement>('.atlas-menu-button')?.focus();
+          setMenuOpen(false);
+        }
+      }
     };
     document.addEventListener("keydown", closeOnEscape);
     return () => document.removeEventListener("keydown", closeOnEscape);
@@ -185,6 +194,7 @@ export default function Navigation() {
               key={group.id}
               onMouseEnter={() => { if (window.matchMedia("(hover: hover)").matches) openPreview(group.id); }}
               onMouseLeave={() => { if (window.matchMedia("(hover: hover)").matches) closePreview(); }}
+              onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setOpenGroup(null); }}
             >
               <button
                 className={`atlas-nav-trigger ${activeGroup === group.id ? "is-active" : ""}`}

@@ -50,17 +50,21 @@ export default function ScientificTimeline() {
 
   useEffect(() => {
     if (!playing) return;
-    const timer = window.setInterval(() => {
-      setActive(current => {
-        if (current >= milestones.length - 1) {
-          setPlaying(false);
-          return current;
-        }
-        return current + 1;
-      });
+    const timer = window.setTimeout(() => {
+      if (active >= milestones.length - 1) setPlaying(false);
+      else setActive(active + 1);
     }, 5000);
-    return () => window.clearInterval(timer);
-  }, [playing, milestones.length]);
+    return () => window.clearTimeout(timer);
+  }, [playing, active, milestones.length]);
+
+  useEffect(() => {
+    const pauseWhenHidden = () => { if (document.hidden) setPlaying(false); };
+    document.addEventListener('visibilitychange', pauseWhenHidden);
+    const section = document.getElementById('cronologia-cientifica');
+    const observer = new IntersectionObserver(entries => { if (!entries[0].isIntersecting) setPlaying(false); });
+    if (section) observer.observe(section);
+    return () => { document.removeEventListener('visibilitychange', pauseWhenHidden); observer.disconnect(); };
+  }, []);
 
   const selected = milestones[active];
   const move = (next: number) => {
@@ -84,7 +88,7 @@ export default function ScientificTimeline() {
           </div>
           <div className="gifted-player-controls">
             <button onClick={() => move(active - 1)} disabled={active === 0} aria-label={labels.previous}><SkipBack size={17} /></button>
-            <button className="gifted-player-play" onClick={() => setPlaying(!playing)} aria-pressed={playing}>{playing ? <Pause size={17} /> : <Play size={17} />}<span>{playing ? labels.pause : labels.play}</span></button>
+            <button className="gifted-player-play" onClick={() => { if (!playing && active === milestones.length - 1) setActive(0); setPlaying(!playing); }} aria-pressed={playing}>{playing ? <Pause size={17} /> : <Play size={17} />}<span>{playing ? labels.pause : labels.play}</span></button>
             <button onClick={() => move(active + 1)} disabled={active === milestones.length - 1} aria-label={labels.next}><SkipForward size={17} /></button>
           </div>
           <div className="gifted-player-progress" aria-hidden="true"><span style={{ width: `${((active + 1) / milestones.length) * 100}%` }} /></div>
