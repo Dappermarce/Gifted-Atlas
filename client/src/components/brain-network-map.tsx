@@ -144,7 +144,7 @@ export default function BrainNetworkMap() {
     <section
       id="mapa-cerebro"
       ref={ref}
-      className={`py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 section-fade ${isVisible ? 'visible' : ''}`}
+      className={`brain-network-section py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 section-fade ${isVisible ? 'visible' : ''}`}
     >
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
@@ -156,21 +156,22 @@ export default function BrainNetworkMap() {
           </div>
         </div>
 
-        <Card className="shadow-xl overflow-hidden mb-8">
+        <Card className="brain-network-card shadow-xl overflow-hidden mb-8">
           <CardContent className="p-6 lg:p-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
               {/* SVG hub-and-spoke */}
               <div>
-                <svg viewBox="0 0 500 400" className="w-full max-w-md mx-auto" aria-label={t.title}>
+                <svg viewBox="0 0 500 400" className="brain-network-svg w-full max-w-md mx-auto" aria-label={t.title}>
                   {/* Spoke lines */}
                   {nodes.map(n => (
                     <line
                       key={n.id}
+                      className="brain-network-spoke"
                       x1={CX} y1={CY}
                       x2={n.cx} y2={n.cy}
-                      stroke={selected === n.id ? n.color : '#CBD5E1'}
                       strokeWidth={selected === n.id ? 3 : 1.5}
                       strokeDasharray="6,3"
+                      style={{ color: selected === n.id ? n.color : undefined }}
                     />
                   ))}
 
@@ -200,20 +201,33 @@ export default function BrainNetworkMap() {
                     const isActive = selected === n.id;
                     const r = 42;
                     return (
-                      <g key={n.id} className="cursor-pointer" onClick={() => setSelected(selected === n.id ? null : n.id)}>
+                      <g
+                        key={n.id}
+                        className={`brain-network-node cursor-pointer ${isActive ? 'is-active' : ''}`}
+                        role="button"
+                        tabIndex={0}
+                        aria-label={n.label}
+                        aria-pressed={isActive}
+                        onClick={() => setSelected(selected === n.id ? null : n.id)}
+                        onKeyDown={(event) => {
+                          if (event.key === 'Enter' || event.key === ' ') {
+                            event.preventDefault();
+                            setSelected(selected === n.id ? null : n.id);
+                          }
+                        }}
+                      >
                         <circle
+                          className="brain-network-node-circle"
                           cx={n.cx} cy={n.cy} r={r}
-                          fill={isActive ? n.color : n.color + '22'}
                           stroke={n.color}
                           strokeWidth={isActive ? 3 : 1.5}
-                          style={{ transition: 'all 0.2s' }}
                         />
                         <text
+                          className="brain-network-node-label"
                           x={n.cx} y={n.cy + 4}
                           textAnchor="middle"
                           fontSize="9"
                           fontWeight="700"
-                          fill={isActive ? 'white' : n.color}
                           fontFamily="Inter, sans-serif"
                           style={{ pointerEvents: 'none' }}
                         >
@@ -223,7 +237,7 @@ export default function BrainNetworkMap() {
                     );
                   })}
                 </svg>
-                <p className="text-center text-xs text-gray-400 mt-2 italic">{t.clickHint}</p>
+                <p className="brain-network-hint text-center text-xs text-gray-400 mt-2 italic">{t.clickHint}</p>
               </div>
 
               {/* Info panel */}
@@ -232,7 +246,7 @@ export default function BrainNetworkMap() {
                   <div className="space-y-4 animate-fade-in">
                     <div className="flex items-center gap-3">
                       <div className="w-4 h-4 rounded-full flex-shrink-0" style={{ backgroundColor: selectedNode.color }} />
-                      <h3 className="text-xl font-bold text-gray-900">{selectedNode.label}</h3>
+                      <h3 className="brain-network-panel-title text-xl font-bold text-gray-900">{selectedNode.label}</h3>
                     </div>
                     <div className="p-4 bg-white rounded-xl border shadow-sm">
                       <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">{t.functionLabel}</p>
@@ -242,7 +256,7 @@ export default function BrainNetworkMap() {
                       <p className="text-xs font-semibold text-blue-500 uppercase tracking-wider mb-2">{t.researchLabel}</p>
                       <p className="text-gray-800 text-sm leading-relaxed">{selectedNode.research}</p>
                     </div>
-                    <div className="p-3 bg-amber-50 border border-amber-100 rounded-xl text-xs text-amber-700 flex items-start gap-2">
+                    <div className="brain-network-caveat p-3 bg-amber-50 border border-amber-100 rounded-xl text-xs text-amber-700 flex items-start gap-2">
                       <AlertCircle size={13} className="mt-0.5 flex-shrink-0" />
                       <span>{t.caveat}</span>
                     </div>
@@ -266,10 +280,10 @@ export default function BrainNetworkMap() {
             <button
               key={n.id}
               onClick={() => setSelected(selected === n.id ? null : n.id)}
-              className={`p-3 rounded-xl border text-left transition-all duration-200 ${
+              className={`brain-network-index-button p-3 rounded-xl border text-left transition-all duration-200 ${
                 selected === n.id ? 'border-2 shadow-md' : 'border-gray-200 hover:border-gray-300 hover:shadow-sm bg-white'
-              }`}
-              style={selected === n.id ? { borderColor: n.color, background: n.color + '18' } : {}}
+              } ${selected === n.id ? 'is-active' : ''}`}
+              style={selected === n.id ? { borderColor: n.color } : {}}
             >
               <div className="flex items-center gap-2 mb-1">
                 <div className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ backgroundColor: n.color }} />
