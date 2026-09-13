@@ -1,6 +1,7 @@
 import Navigation from "@/components/navigation";
 import EnhancedHero from "@/components/enhanced-hero";
 import AuthorNote from "@/components/author-note";
+import AtlasIndex from "@/components/atlas-index";
 import StatisticsSection from "@/components/statistics-section";
 import GiftednessSection from "@/components/giftedness-section";
 import TalentDevelopmentMap from "@/components/talent-development-map";
@@ -51,6 +52,7 @@ export default function Home() {
       <main id="main-content">
       <EnhancedHero />
       <AuthorNote />
+      <AtlasIndex />
       <StatisticsSection />
       <GiftednessSection />
       <TalentDevelopmentMap />

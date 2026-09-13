@@ -6,7 +6,7 @@
     <title>Gifted Atlas — Psicología de las Altas Capacidades</title>
     <meta name="description" content="Atlas educativo bilingüe sobre altas capacidades, inteligencia, identificación, educación y neurociencia, con fuentes académicas y límites de evidencia." />
     <meta name="author" content="Marcelo C. K." />
-    <meta name="theme-color" content="#172554" />
+    <meta name="theme-color" content="#09070d" />
     <link rel="canonical" href="https://giftedatlas.onrender.com/" />
     <meta property="og:title" content="Gifted Atlas — Psicología de las Altas Capacidades" />
     <meta property="og:description" content="Modelos, evaluación, educación, neurociencia y bibliografía explicados con contexto y cautela científica." />
@@ -16,7 +16,14 @@
     <meta name="citation_title" content="Gifted Atlas — Psicología de las Altas Capacidades" />
     <meta name="citation_author" content="Marcelo C. K." />
     <meta name="citation_publication_date" content="2026" />
-    <meta name="citation_online_date" content="2026/07/15" />
+    <meta name="citation_online_date" content="2026/09/13" />
+    <script>
+      (function () {
+        var saved = localStorage.getItem('gifted-atlas-theme');
+        var dark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (dark) document.documentElement.classList.add('dark');
+      })();
+    </script>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
