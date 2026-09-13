@@ -1,198 +1,234 @@
-import { useState, useEffect } from "react";
-import { Menu, X, Brain, ChevronRight } from "lucide-react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { ArrowUpRight, Brain, ChevronDown, Menu, Moon, Sun, X } from "lucide-react";
 import { useLanguage } from "@/contexts/language-context";
 
+type NavItem = { id: string; label: string; note: string };
+type NavGroup = { id: string; label: string; eyebrow: string; title: string; description: string; items: NavItem[] };
+
 export default function Navigation() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState('inicio');
   const { lang, toggleLang } = useLanguage();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [openGroup, setOpenGroup] = useState<string | null>(null);
+  const [activeSection, setActiveSection] = useState("inicio");
+  const [dark, setDark] = useState(false);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 60);
-
-      // Detect active section
-      const sectionIds = ['inicio', 'superdotacion', 'mapa-superdotacion', 'mapa-cerebro', 'mapa-evaluacion', 'metodologia-investigacion', 'cronologia-cientifica', 'psiquiatria', 'evaluacion-avanzada', 'recursos', 'mitos', 'preguntas-frecuentes', 'bibliografia'];
-      let current = 'inicio';
-      for (const id of sectionIds) {
-        const el = document.getElementById(id);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top <= 80) current = id;
-        }
-      }
-      setActiveSection(current);
-    };
-
-    handleScroll();
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleScroll);
-    };
-  }, []);
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsMenuOpen(false);
-    }
+  const openPreview = (id: string) => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setOpenGroup(id);
+  };
+  const closePreview = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    closeTimer.current = setTimeout(() => setOpenGroup(null), 180);
   };
 
-  // Map sub-sections of the "Mapas" group back to the nav item ID
-  const navActiveId = ['mapa-cerebro', 'mapa-evaluacion'].includes(activeSection)
-    ? 'mapa-superdotacion'
-    : activeSection;
+  useEffect(() => () => { if (closeTimer.current) clearTimeout(closeTimer.current); }, []);
 
-  const navItems = lang === 'es'
-    ? [
-        { id: 'inicio', label: 'Inicio' },
-        { id: 'superdotacion', label: 'Superdotación' },
-        { id: 'mapa-superdotacion', label: 'Mapas' },
-        { id: 'metodologia-investigacion', label: 'Investigación' },
-        { id: 'cronologia-cientifica', label: 'Historia' },
-        { id: 'psiquiatria', label: 'Psiquiatría' },
-        { id: 'evaluacion-avanzada', label: 'Evaluación' },
-        { id: 'recursos', label: 'Recursos' },
-        { id: 'mitos', label: 'Mitos' },
-        { id: 'bibliografia', label: 'Bibliografía' },
-      ]
-    : [
-        { id: 'inicio', label: 'Home' },
-        { id: 'superdotacion', label: 'Giftedness' },
-        { id: 'mapa-superdotacion', label: 'Maps' },
-        { id: 'metodologia-investigacion', label: 'Research' },
-        { id: 'cronologia-cientifica', label: 'History' },
-        { id: 'psiquiatria', label: 'Psychiatry' },
-        { id: 'evaluacion-avanzada', label: 'Assessment' },
-        { id: 'recursos', label: 'Resources' },
-        { id: 'mitos', label: 'Myths' },
-        { id: 'bibliografia', label: 'Bibliography' },
-      ];
+  const groups = useMemo<NavGroup[]>(() => lang === "es" ? [
+    {
+      id: "atlas", label: "Mapa del atlas", eyebrow: "Empieza con una pregunta", title: "No necesitas leerlo en orden.",
+      description: "El índice reúne rutas breves para quien llega por curiosidad y capas más profundas para quien decide quedarse.",
+      items: [
+        { id: "indice-atlas", label: "Índice de temas", note: "Cuatro rutas para orientarte" },
+        { id: "nota-del-autor", label: "Cómo está construido", note: "Evidencia, límites y persona" },
+      ],
+    },
+    {
+      id: "comprender", label: "Comprender", eyebrow: "Más que una cifra", title: "Modelos que explican partes, no vidas completas.",
+      description: "Compara definiciones, desarrollo del talento, perfiles cognitivos y evidencia neurológica sin convertir un marco en diagnóstico.",
+      items: [
+        { id: "superdotacion", label: "Altas capacidades", note: "Definiciones y dimensiones" },
+        { id: "mapa-superdotacion", label: "Mapa del talento", note: "Capacidad, contexto y desarrollo" },
+        { id: "neurociencia", label: "Neurociencia", note: "Tendencias de grupo y límites" },
+        { id: "explorador-cerebral", label: "Explorador cerebral", note: "Superficie, estructuras internas y zoom" },
+        { id: "mapa-cerebro", label: "Redes cerebrales", note: "Una representación interactiva" },
+      ],
+    },
+    {
+      id: "evidencia", label: "Evidencia", eyebrow: "La certeza se gana", title: "Cómo sabemos lo que creemos saber.",
+      description: "Métodos, historia y estadísticas con una distinción visible entre resultados, hipótesis y debates todavía abiertos.",
+      items: [
+        { id: "metodologia-investigacion", label: "Investigación", note: "Diseños, sesgos y lectura crítica" },
+        { id: "cronologia-cientifica", label: "Historia interactiva", note: "Reproduce cada hito" },
+        { id: "statistics", label: "Cifras con contexto", note: "Qué miden y qué no" },
+      ],
+    },
+    {
+      id: "identificar", label: "Identificar", eyebrow: "Evaluar no es etiquetar", title: "Una puntuación abre preguntas; no las cierra.",
+      description: "Explora evaluación multimétodo, doble excepcionalidad y decisiones educativas sin convertir una actividad en diagnóstico.",
+      items: [
+        { id: "evaluacion-avanzada", label: "Evaluación", note: "Principios y actividad educativa" },
+        { id: "mapa-evaluacion", label: "Ruta de evaluación", note: "Fuentes y decisiones" },
+        { id: "psiquiatria", label: "Doble excepcionalidad", note: "Cruces que exigen contexto" },
+      ],
+    },
+    {
+      id: "biblioteca", label: "Biblioteca", eyebrow: "Seguir indagando", title: "El atlas no termina en el resumen.",
+      description: "Fuentes, preguntas frecuentes y mitos organizados para poder comprobar, contrastar y continuar la investigación.",
+      items: [
+        { id: "recursos", label: "Recursos", note: "Instituciones y lecturas" },
+        { id: "mitos", label: "Mitos", note: "Afirmaciones bajo revisión" },
+        { id: "preguntas-frecuentes", label: "Preguntas frecuentes", note: "Respuestas con matices" },
+        { id: "bibliografia", label: "Bibliografía", note: "Fuentes trazables" },
+      ],
+    },
+  ] : [
+    {
+      id: "atlas", label: "Atlas map", eyebrow: "Begin with a question", title: "You do not need to read it in order.",
+      description: "The index offers short routes for the curious and deeper layers for readers who decide to stay.",
+      items: [
+        { id: "indice-atlas", label: "Topic index", note: "Four routes to find your way" },
+        { id: "nota-del-autor", label: "How it is built", note: "Evidence, limits and person" },
+      ],
+    },
+    {
+      id: "comprender", label: "Understand", eyebrow: "More than a score", title: "Models explain parts, not entire lives.",
+      description: "Compare definitions, talent development, cognitive profiles and neurological evidence without turning a framework into a diagnosis.",
+      items: [
+        { id: "superdotacion", label: "Giftedness", note: "Definitions and dimensions" },
+        { id: "mapa-superdotacion", label: "Talent map", note: "Ability, context and development" },
+        { id: "neurociencia", label: "Neuroscience", note: "Group trends and limits" },
+        { id: "explorador-cerebral", label: "Brain explorer", note: "Surface, internal structures and zoom" },
+        { id: "mapa-cerebro", label: "Brain networks", note: "An interactive representation" },
+      ],
+    },
+    {
+      id: "evidencia", label: "Evidence", eyebrow: "Certainty is earned", title: "How we know what we think we know.",
+      description: "Methods, history and statistics with a visible distinction between findings, hypotheses and open debates.",
+      items: [
+        { id: "metodologia-investigacion", label: "Research", note: "Designs, bias and critical reading" },
+        { id: "cronologia-cientifica", label: "Interactive history", note: "Play every milestone" },
+        { id: "statistics", label: "Numbers in context", note: "What they measure and what they do not" },
+      ],
+    },
+    {
+      id: "identificar", label: "Identify", eyebrow: "Assessment is not labeling", title: "A score opens questions; it does not close them.",
+      description: "Explore multi-method assessment, twice exceptionality and educational decisions without turning an activity into diagnosis.",
+      items: [
+        { id: "evaluacion-avanzada", label: "Assessment", note: "Principles and learning activity" },
+        { id: "mapa-evaluacion", label: "Assessment route", note: "Sources and decisions" },
+        { id: "psiquiatria", label: "Twice exceptionality", note: "Overlaps that require context" },
+      ],
+    },
+    {
+      id: "biblioteca", label: "Library", eyebrow: "Keep investigating", title: "The atlas does not end at the summary.",
+      description: "Sources, frequently asked questions and myths organized so readers can check, compare and continue the research.",
+      items: [
+        { id: "recursos", label: "Resources", note: "Institutions and readings" },
+        { id: "mitos", label: "Myths", note: "Claims under review" },
+        { id: "preguntas-frecuentes", label: "Frequently asked", note: "Answers with nuance" },
+        { id: "bibliografia", label: "Bibliography", note: "Traceable sources" },
+      ],
+    },
+  ], [lang]);
 
-  const brandDescriptor = lang === 'es' ? 'Psicología de las Altas Capacidades' : 'Psychology of Giftedness';
+  useEffect(() => {
+    const saved = localStorage.getItem("gifted-atlas-theme");
+    const initial = saved ? saved === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    setDark(initial);
+    document.documentElement.classList.toggle("dark", initial);
+  }, []);
+
+  useEffect(() => {
+    const sectionIds = groups.flatMap(group => group.items.map(item => item.id));
+    const update = () => {
+      let current = "inicio";
+      let nearestTop = -Infinity;
+      sectionIds.forEach(id => {
+        const element = document.getElementById(id);
+        const top = element?.getBoundingClientRect().top;
+        if (top !== undefined && top <= 130 && top > nearestTop) { current = id; nearestTop = top; }
+      });
+      setActiveSection(current);
+    };
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    return () => window.removeEventListener("scroll", update);
+  }, [groups]);
+
+  useEffect(() => {
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        const active = document.activeElement;
+        const group = active instanceof HTMLElement ? active.closest('.atlas-nav-group') : null;
+        group?.querySelector<HTMLButtonElement>('.atlas-nav-trigger')?.focus();
+        setOpenGroup(null);
+        if (!group) {
+          if (active instanceof HTMLElement && active.closest('.atlas-nav')) document.querySelector<HTMLButtonElement>('.atlas-menu-button')?.focus();
+          setMenuOpen(false);
+        }
+      }
+    };
+    document.addEventListener("keydown", closeOnEscape);
+    return () => document.removeEventListener("keydown", closeOnEscape);
+  }, []);
+
+  const setTheme = () => {
+    const next = !dark;
+    setDark(next);
+    document.documentElement.classList.toggle("dark", next);
+    localStorage.setItem("gifted-atlas-theme", next ? "dark" : "light");
+    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", next ? "#09070d" : "#f7f5fb");
+  };
+
+  const goTo = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    setMenuOpen(false);
+    setOpenGroup(null);
+  };
+
+  const activeGroup = groups.find(group => group.items.some(item => item.id === activeSection))?.id;
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100'
-          : 'bg-transparent'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-14">
-          {/* Logo */}
-          <button
-            onClick={() => scrollToSection('inicio')}
-            className="flex items-center gap-2 flex-shrink-0"
-          >
-            <Brain
-              className={`transition-colors duration-300 ${scrolled ? 'text-primary' : 'text-blue-300'}`}
-              size={24}
-            />
-            <span
-              className={`text-sm font-semibold hidden lg:block transition-colors duration-300 ${
-                scrolled ? 'text-slate-800' : 'text-white'
-              }`}
-            >
-              Gifted Atlas<span className="hidden 2xl:inline font-normal opacity-80"> — {brandDescriptor}</span>
-            </span>
-          </button>
+    <nav className="atlas-nav" aria-label={lang === "es" ? "Navegación principal" : "Main navigation"}>
+      <div className="atlas-nav-shell">
+        <button className="atlas-brand" onClick={() => goTo("inicio")} aria-label="Gifted Atlas — Home">
+          <span className="atlas-brand-mark"><Brain size={20} /></span>
+          <span className="atlas-brand-copy"><strong>Gifted Atlas</strong><small>{lang === "es" ? "Psicología de las altas capacidades" : "Psychology of giftedness"}</small></span>
+        </button>
 
-          {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-1">
-            {navItems.map(({ id, label }) => {
-              const isActive = navActiveId === id;
-              return (
-                <button
-                  key={id}
-                  onClick={() => scrollToSection(id)}
-                  className={`relative px-2.5 py-1.5 rounded-md text-xs font-medium transition-all duration-200 whitespace-nowrap ${
-                    scrolled
-                      ? isActive
-                        ? 'text-primary bg-primary/10'
-                        : 'text-slate-600 hover:text-primary hover:bg-primary/5'
-                      : isActive
-                        ? 'text-white bg-white/20'
-                        : 'text-blue-100 hover:text-white hover:bg-white/10'
-                  }`}
-                >
-                  {label}
-                  {isActive && (
-                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary" />
-                  )}
-                </button>
-              );
-            })}
+        <div className={`atlas-nav-groups ${menuOpen ? "is-open" : ""}`}>
+          {groups.map(group => (
+            <div
+              className={`atlas-nav-group ${openGroup === group.id ? "is-open" : ""}`}
+              key={group.id}
+              onMouseEnter={() => { if (window.matchMedia("(hover: hover)").matches) openPreview(group.id); }}
+              onMouseLeave={() => { if (window.matchMedia("(hover: hover)").matches) closePreview(); }}
+              onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setOpenGroup(null); }}
+            >
+              <button
+                className={`atlas-nav-trigger ${activeGroup === group.id ? "is-active" : ""}`}
+                onClick={() => { if (closeTimer.current) clearTimeout(closeTimer.current); setOpenGroup(openGroup === group.id ? null : group.id); }}
+                aria-expanded={openGroup === group.id}
+                aria-controls={`nav-panel-${group.id}`}
+              >
+                {group.label}<ChevronDown size={13} />
+              </button>
+              <div id={`nav-panel-${group.id}`} className="atlas-nav-panel">
+                <div className="atlas-panel-story">
+                  <span>{group.eyebrow}</span>
+                  <h2>{group.title}</h2>
+                  <p>{group.description}</p>
+                  <div className="atlas-thread" aria-hidden="true"><i /><i /><i /><i /></div>
+                </div>
+                <div className="atlas-panel-links">
+                  {group.items.map(item => (
+                    <button key={item.id} onClick={() => goTo(item.id)}>
+                      <span><strong>{item.label}</strong><small>{item.note}</small></span><ArrowUpRight size={16} />
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
 
-            {/* Language Toggle */}
-            <button
-              onClick={toggleLang}
-              className={`ml-2 flex items-center gap-1 rounded-full px-3 py-1.5 text-xs font-semibold transition-all duration-200 border ${
-                scrolled
-                  ? 'bg-primary/10 hover:bg-primary/20 text-primary border-primary/30'
-                  : 'bg-white/10 hover:bg-white/20 text-white border-white/30'
-              }`}
-              title={lang === 'es' ? 'Switch to English' : 'Cambiar a Español'}
-            >
-              <span className={lang === 'es' ? 'font-bold' : 'opacity-50'}>ES</span>
-              <span className="opacity-40 mx-0.5">|</span>
-              <span className={lang === 'en' ? 'font-bold' : 'opacity-50'}>EN</span>
-            </button>
-          </div>
-
-          {/* Mobile controls */}
-          <div className="md:hidden flex items-center gap-2">
-            <button
-              onClick={toggleLang}
-              className={`flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold transition-all border ${
-                scrolled
-                  ? 'bg-primary/10 text-primary border-primary/30'
-                  : 'bg-white/10 text-white border-white/30'
-              }`}
-            >
-              <span className={lang === 'es' ? 'font-bold' : 'opacity-50'}>ES</span>
-              <span className="opacity-40">|</span>
-              <span className={lang === 'en' ? 'font-bold' : 'opacity-50'}>EN</span>
-            </button>
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className={`transition-colors ${scrolled ? 'text-slate-700 hover:text-primary' : 'text-white hover:text-blue-200'}`}
-            >
-              {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
-            </button>
-          </div>
+        <div className="atlas-nav-actions">
+          <button onClick={setTheme} aria-label={lang === "es" ? "Cambiar tema" : "Change theme"} aria-pressed={dark}>{dark ? <Sun size={17} /> : <Moon size={17} />}</button>
+          <button className="atlas-lang" onClick={toggleLang} aria-label={lang === "es" ? "Switch to English" : "Cambiar a español"}>{lang === "es" ? "EN" : "ES"}</button>
+          <button className="atlas-menu-button" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-label={lang === "es" ? "Abrir menú" : "Open menu"}>{menuOpen ? <X size={20} /> : <Menu size={20} />}</button>
         </div>
       </div>
-
-      {/* Mobile menu */}
-      {isMenuOpen && (
-        <div className="md:hidden bg-white/98 backdrop-blur-md border-t border-gray-100 shadow-lg">
-          <div className="px-4 py-3 space-y-1">
-            {navItems.map(({ id, label }) => {
-              const isActive = navActiveId === id;
-              return (
-                <button
-                  key={id}
-                  onClick={() => scrollToSection(id)}
-                  className={`flex items-center justify-between w-full text-left px-3 py-2.5 rounded-lg text-sm transition-colors ${
-                    isActive
-                      ? 'text-primary bg-primary/10 font-semibold'
-                      : 'text-slate-700 hover:text-primary hover:bg-gray-50'
-                  }`}
-                >
-                  {label}
-                  {isActive && <ChevronRight size={14} className="text-primary" />}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      )}
     </nav>
   );
 }

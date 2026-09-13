@@ -32,7 +32,7 @@ npm run dev
 
 Autoría y revisión profesional
 
-Última revisión: julio de 2026.
+Última revisión: septiembre de 2026.
 
 Documentación del proyecto
 
