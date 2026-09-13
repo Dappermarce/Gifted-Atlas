@@ -1,6 +1,7 @@
 import Navigation from "@/components/navigation";
 import EnhancedHero from "@/components/enhanced-hero";
 import AuthorNote from "@/components/author-note";
+import AtlasIndex from "@/components/atlas-index";
 import StatisticsSection from "@/components/statistics-section";
 import GiftednessSection from "@/components/giftedness-section";
 import TalentDevelopmentMap from "@/components/talent-development-map";
@@ -23,6 +24,7 @@ import MythsSection from "@/components/myths-section";
 import FaqSection from "@/components/faq-section";
 import BibliographySection from "@/components/bibliography-section";
 import Footer from "@/components/footer";
+import EditorialThread from "@/components/editorial-thread";
 import { useLanguage } from "@/contexts/language-context";
 
 export default function Home() {
@@ -51,16 +53,20 @@ export default function Home() {
       <main id="main-content">
       <EnhancedHero />
       <AuthorNote />
+      <AtlasIndex />
+      <EditorialThread moment="number" />
       <StatisticsSection />
       <GiftednessSection />
       <TalentDevelopmentMap />
       <CognitiveProfiles />
       <NeurologicalEvidence />
       <InteractiveBrainMap />
+      <EditorialThread moment="brain" />
       <BrainNetworkMap />
       <ResearchMethodology />
       <ComprehensiveStatistics />
       <ScientificTimeline />
+      <EditorialThread moment="history" />
       <GlobalStatistics />
       <IntelligenceTheories />
       <PsychiatrySection />
