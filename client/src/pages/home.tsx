@@ -24,6 +24,7 @@ import MythsSection from "@/components/myths-section";
 import FaqSection from "@/components/faq-section";
 import BibliographySection from "@/components/bibliography-section";
 import Footer from "@/components/footer";
+import EditorialThread from "@/components/editorial-thread";
 import { useLanguage } from "@/contexts/language-context";
 
 export default function Home() {
@@ -53,16 +54,19 @@ export default function Home() {
       <EnhancedHero />
       <AuthorNote />
       <AtlasIndex />
+      <EditorialThread moment="number" />
       <StatisticsSection />
       <GiftednessSection />
       <TalentDevelopmentMap />
       <CognitiveProfiles />
       <NeurologicalEvidence />
       <InteractiveBrainMap />
+      <EditorialThread moment="brain" />
       <BrainNetworkMap />
       <ResearchMethodology />
       <ComprehensiveStatistics />
       <ScientificTimeline />
+      <EditorialThread moment="history" />
       <GlobalStatistics />
       <IntelligenceTheories />
       <PsychiatrySection />
