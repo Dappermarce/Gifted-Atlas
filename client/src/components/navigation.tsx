@@ -11,7 +11,7 @@ export default function Navigation() {
   const [openGroup, setOpenGroup] = useState<string | null>(null);
   const [activeSection, setActiveSection] = useState("inicio");
   const [dark, setDark] = useState(false);
-  const [atlasNote, setAtlasNote] = useState<{ index: number; text: string } | null>(null);
+  const [atlasNote, setAtlasNote] = useState<{ text: string } | null>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const noteTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const brandClickCount = useRef(0);
@@ -201,7 +201,7 @@ export default function Navigation() {
     if (brandClickCount.current % 5 !== 0) return;
 
     const index = brandClickCount.current / 5 - 1;
-    setAtlasNote({ index, text: brandNotes[index] });
+    setAtlasNote({ text: brandNotes[index] });
     if (noteTimer.current) clearTimeout(noteTimer.current);
     noteTimer.current = setTimeout(() => setAtlasNote(null), 5400);
     if (index === brandNotes.length - 1) brandClickCount.current = 0;
@@ -261,7 +261,7 @@ export default function Navigation() {
       </div>
       {atlasNote && (
         <aside className="atlas-easter-note is-visible" role="status" aria-live="polite">
-          <span>{lang === "es" ? "Nota al margen" : "Margin note"} · {String(atlasNote.index + 1).padStart(2, "0")}/{String(brandNotes.length).padStart(2, "0")}</span>
+          <span>{lang === "es" ? "Nota al margen" : "Margin note"}</span>
           <p>{atlasNote.text}</p>
         </aside>
       )}
