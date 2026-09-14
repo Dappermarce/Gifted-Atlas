@@ -147,12 +147,12 @@ export default function BrainNetworkMap() {
       className={`brain-network-section py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 section-fade ${isVisible ? 'visible' : ''}`}
     >
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-10">
+        <div className="brain-network-heading text-center mb-10">
           <h2 className="text-4xl font-bold text-gray-900 mb-3">{t.title}</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-3">{t.subtitle}</p>
-          <div className="inline-flex items-center gap-2 bg-amber-50 border border-amber-200 rounded-full px-4 py-2">
-            <AlertCircle className="text-amber-500" size={15} />
-            <span className="text-sm text-amber-700 font-medium">{t.disclaimer}</span>
+          <div className="brain-network-disclaimer inline-flex items-center gap-2 border rounded-full px-4 py-2">
+            <AlertCircle size={15} />
+            <span className="text-sm font-medium">{t.disclaimer}</span>
           </div>
         </div>
 
@@ -248,12 +248,12 @@ export default function BrainNetworkMap() {
                       <div className="w-4 h-4 rounded-full flex-shrink-0" style={{ backgroundColor: selectedNode.color }} />
                       <h3 className="brain-network-panel-title text-xl font-bold text-gray-900">{selectedNode.label}</h3>
                     </div>
-                    <div className="p-4 bg-white rounded-xl border shadow-sm">
+                    <div className="brain-network-info-panel p-4 rounded-xl border shadow-sm">
                       <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">{t.functionLabel}</p>
                       <p className="text-gray-800 text-sm leading-relaxed">{selectedNode.desc}</p>
                     </div>
-                    <div className="p-4 bg-blue-50 rounded-xl border border-blue-100">
-                      <p className="text-xs font-semibold text-blue-500 uppercase tracking-wider mb-2">{t.researchLabel}</p>
+                    <div className="brain-network-research-panel p-4 rounded-xl border">
+                      <p className="text-xs font-semibold uppercase tracking-wider mb-2">{t.researchLabel}</p>
                       <p className="text-gray-800 text-sm leading-relaxed">{selectedNode.research}</p>
                     </div>
                     <div className="brain-network-caveat p-3 bg-amber-50 border border-amber-100 rounded-xl text-xs text-amber-700 flex items-start gap-2">
@@ -262,8 +262,8 @@ export default function BrainNetworkMap() {
                     </div>
                   </div>
                 ) : (
-                  <div className="flex flex-col items-center justify-center h-64 text-center text-gray-400">
-                    <div className="w-16 h-16 rounded-full bg-indigo-100 flex items-center justify-center mb-4 opacity-60">
+                  <div className="brain-network-empty flex flex-col items-center justify-center h-64 text-center">
+                    <div className="w-16 h-16 rounded-full flex items-center justify-center mb-4">
                       <span className="text-2xl">🧠</span>
                     </div>
                     <p className="text-base font-medium text-gray-600 mb-1">{t.clickHint}</p>
@@ -293,7 +293,7 @@ export default function BrainNetworkMap() {
           ))}
         </div>
 
-        <p className="text-xs text-gray-400 text-center mt-8 italic">
+        <p className="brain-network-source text-xs text-center mt-8 italic">
           {lang === 'es'
             ? 'Fuente: Jung & Haier (2007), Engle (2002), Diamond (2013), Beaty et al. (2016). Elaboración propia.'
             : 'Source: Jung & Haier (2007), Engle (2002), Diamond (2013), Beaty et al. (2016). Own elaboration.'}
