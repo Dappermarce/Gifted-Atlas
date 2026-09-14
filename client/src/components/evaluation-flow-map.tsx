@@ -102,13 +102,13 @@ export default function EvaluationFlowMap() {
     <section
       id="mapa-evaluacion"
       ref={ref}
-      className={`py-20 bg-gradient-to-br from-white via-indigo-50 to-purple-50 section-fade ${isVisible ? 'visible' : ''}`}
+      className={`evaluation-flow-section py-20 section-fade ${isVisible ? 'visible' : ''}`}
     >
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-gray-900 mb-3">{t.title}</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-3">{t.subtitle}</p>
-          <span className="inline-block bg-amber-50 border border-amber-200 text-amber-700 text-xs rounded-full px-4 py-1.5 font-medium">
+          <span className="evaluation-disclaimer inline-block border text-xs rounded-full px-4 py-1.5 font-medium">
             {t.disclaimer}
           </span>
         </div>
@@ -135,8 +135,8 @@ export default function EvaluationFlowMap() {
 
                 {/* Content card */}
                 <Card
-                  className="flex-1 shadow-sm hover:shadow-md transition-shadow border-2"
-                  style={{ borderColor: step.border, backgroundColor: step.bg }}
+                  className="evaluation-step-card flex-1 shadow-sm hover:shadow-md transition-shadow border-2"
+                  style={{ borderColor: step.border }}
                 >
                   <CardContent className="p-5">
                     <div className="flex items-baseline gap-3 mb-2">
@@ -152,9 +152,9 @@ export default function EvaluationFlowMap() {
         </div>
 
         {/* Note */}
-        <div className="mt-10 bg-yellow-50 border border-yellow-200 rounded-2xl p-5">
-          <p className="text-sm font-bold text-yellow-800 mb-1">⚠️ {t.noteTitle}</p>
-          <p className="text-sm text-yellow-700">{t.noteText}</p>
+        <div className="evaluation-note mt-10 border rounded-2xl p-5">
+          <p className="text-sm font-bold mb-1">⚠️ {t.noteTitle}</p>
+          <p className="text-sm">{t.noteText}</p>
         </div>
 
         <p className="text-xs text-gray-400 text-center mt-6 italic">{t.source}</p>
