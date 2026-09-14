@@ -703,6 +703,123 @@ h1, h2, .gifted-index-card strong, .gifted-milestone h3, .atlas-panel-story h2 {
 .dark .brain-network-index-button { border-color: #392f42; background: #17131b; color: #eee8f2; }
 .dark .brain-network-index-button.is-active { background: #2a2033; }
 
+/* Cognitive profiles use opaque editorial surfaces in both themes. */
+.cognitive-profiles-section {
+  background:
+    radial-gradient(circle at 12% 0%, rgba(118,81,214,0.1), transparent 34%),
+    #f5f2f8;
+}
+.cognitive-profile-note { color: #706578; opacity: 1; }
+.cognitive-profile-card,
+.executive-functions-card,
+.asynchrony-card {
+  border-color: #ddd3e5 !important;
+  background: #ffffff !important;
+}
+.executive-functions-note { color: #62576a; opacity: 1; }
+.executive-function-block {
+  border-color: #ded3e7;
+  background: #f4eff7;
+}
+.asynchrony-row { border-color: #e0d7e7; background: #faf8fb; }
+.asynchrony-note {
+  border: 1px solid #dccfe6;
+  background: #eee7f5;
+  color: #574563;
+}
+.dark .cognitive-profiles-section { background-image: none; background-color: #0d0a10; }
+.dark .cognitive-profiles-heading h2,
+.dark .executive-functions-card h3,
+.dark .executive-function-block h4,
+.dark .asynchrony-card h3,
+.dark .asynchrony-row h4 { color: #f4eef7 !important; }
+.dark .cognitive-profiles-heading > p:first-of-type,
+.dark .cognitive-profile-note,
+.dark .executive-functions-note,
+.dark .asynchrony-card > div > p { color: #c4bac9 !important; opacity: 1; }
+.dark .cognitive-profile-card,
+.dark .executive-functions-card,
+.dark .asynchrony-card {
+  border-color: #392e43 !important;
+  background: #18131d !important;
+  color: #eee8f2;
+}
+.dark .cognitive-profile-card :is(h3, h4) { color: #f4eef7 !important; }
+.dark .cognitive-profile-card :is(p, li) { color: #c8bdcf !important; opacity: 1; }
+.dark .cognitive-profile-card .border-t { border-color: #3b3045; }
+.dark .executive-function-block,
+.dark .asynchrony-row {
+  border-color: #41334b;
+  background: #211a27;
+}
+.dark .executive-function-block p,
+.dark .asynchrony-row p { color: #c8bdcf !important; opacity: 1; }
+.dark .asynchrony-note {
+  border-color: #59456c;
+  background: #21182a;
+  color: #dfcff0;
+}
+.dark .asynchrony-note p { color: #dfcff0 !important; opacity: 1; }
+
+/* Network-map copy, panels and sources remain opaque around the SVG. */
+.brain-network-section {
+  background:
+    radial-gradient(circle at 86% 0%, rgba(86,68,166,0.1), transparent 36%),
+    #f5f2f8;
+}
+.brain-network-disclaimer {
+  border-color: #d8c8e5;
+  background: #eee7f5;
+  color: #5b4270;
+}
+.brain-network-info-panel { border-color: #ded5e5; background: #ffffff; }
+.brain-network-research-panel { border-color: #d9cce5; background: #f0eaf5; }
+.brain-network-research-panel > p:first-child { color: #6d48ad; }
+.brain-network-empty { color: #746a7c; }
+.brain-network-empty > div { background: #eee7f5; opacity: 1; }
+.brain-network-empty > p { color: #5f5567 !important; }
+.brain-network-source { color: #706578; opacity: 1; }
+.dark .brain-network-section { background-image: none; background-color: #0d0a10; }
+.dark .brain-network-heading h2 { color: #f4eef7 !important; }
+.dark .brain-network-heading > p { color: #c4bac9 !important; opacity: 1; }
+.dark .brain-network-disclaimer {
+  border-color: #5d4773;
+  background: #21182a;
+  color: #dfcff0;
+}
+.dark .brain-network-info-panel,
+.dark .brain-network-research-panel {
+  border-color: #40324a;
+  background: #1b1621;
+}
+.dark .brain-network-info-panel p,
+.dark .brain-network-research-panel p { color: #d1c6d8 !important; opacity: 1; }
+.dark .brain-network-research-panel > p:first-child { color: #cbb2f5 !important; }
+.dark .brain-network-empty { color: #b9afc0; }
+.dark .brain-network-empty > div { background: #241b2c; }
+.dark .brain-network-empty > p { color: #c8bdcf !important; }
+.dark .brain-network-source { color: #b8adc0; opacity: 1; }
+
+/* A margin note for persistent readers, never an achievement badge. */
+.atlas-easter-note {
+  position: fixed;
+  right: clamp(0.8rem, 3vw, 2rem);
+  bottom: clamp(0.8rem, 3vw, 2rem);
+  z-index: 120;
+  width: min(390px, calc(100vw - 1.6rem));
+  padding: 1rem 1.1rem;
+  border: 1px solid #49375a;
+  border-radius: 16px;
+  background: radial-gradient(circle at 90% 0%, rgba(156,121,228,0.22), transparent 42%), #110d16;
+  color: #f4eef7;
+  box-shadow: 0 20px 55px rgba(9,5,13,0.38);
+  pointer-events: none;
+  animation: atlas-note-in 200ms ease both;
+}
+.atlas-easter-note span { color: #bda4e5; font-size: 0.62rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; }
+.atlas-easter-note p { margin-top: 0.45rem; color: #eee7f3; font-family: 'Newsreader', Georgia, serif; font-size: 1.05rem; line-height: 1.45; }
+@keyframes atlas-note-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
 /* Longitudinal evidence and assessment use the same neutral editorial
    surfaces as the rest of the atlas; color remains an accent, not a backdrop. */
 .longitudinal-section,

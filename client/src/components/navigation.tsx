@@ -11,7 +11,10 @@ export default function Navigation() {
   const [openGroup, setOpenGroup] = useState<string | null>(null);
   const [activeSection, setActiveSection] = useState("inicio");
   const [dark, setDark] = useState(false);
+  const [atlasNote, setAtlasNote] = useState<{ index: number; text: string } | null>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const noteTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const brandClickCount = useRef(0);
 
   const openPreview = (id: string) => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
@@ -22,7 +25,22 @@ export default function Navigation() {
     closeTimer.current = setTimeout(() => setOpenGroup(null), 180);
   };
 
-  useEffect(() => () => { if (closeTimer.current) clearTimeout(closeTimer.current); }, []);
+  useEffect(() => () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    if (noteTimer.current) clearTimeout(noteTimer.current);
+  }, []);
+
+  const brandNotes = useMemo(() => lang === "es" ? [
+    "Detectaste una regularidad que no estaba señalizada.",
+    "La exploración también revela cómo se aproxima una persona a la información.",
+    "Seguiste buscando después de que desapareciera la instrucción.",
+    "El patrón estaba ahí. La indicación para buscarlo, no.",
+  ] : [
+    "You detected a regularity that was not signposted.",
+    "Exploration also reveals how a person approaches information.",
+    "You kept looking after the instruction disappeared.",
+    "The pattern was there. The instruction to look for it was not.",
+  ], [lang]);
 
   const groups = useMemo<NavGroup[]>(() => lang === "es" ? [
     {
@@ -177,12 +195,24 @@ export default function Navigation() {
     setOpenGroup(null);
   };
 
+  const handleBrandClick = () => {
+    goTo("inicio");
+    brandClickCount.current += 1;
+    if (brandClickCount.current % 5 !== 0) return;
+
+    const index = brandClickCount.current / 5 - 1;
+    setAtlasNote({ index, text: brandNotes[index] });
+    if (noteTimer.current) clearTimeout(noteTimer.current);
+    noteTimer.current = setTimeout(() => setAtlasNote(null), 5400);
+    if (index === brandNotes.length - 1) brandClickCount.current = 0;
+  };
+
   const activeGroup = groups.find(group => group.items.some(item => item.id === activeSection))?.id;
 
   return (
     <nav className="atlas-nav" aria-label={lang === "es" ? "Navegación principal" : "Main navigation"}>
       <div className="atlas-nav-shell">
-        <button className="atlas-brand" onClick={() => goTo("inicio")} aria-label="Gifted Atlas — Home">
+        <button className="atlas-brand" onClick={handleBrandClick} aria-label="Gifted Atlas — Home">
           <span className="atlas-brand-mark"><Brain size={20} /></span>
           <span className="atlas-brand-copy"><strong>Gifted Atlas</strong><small>{lang === "es" ? "Psicología de las altas capacidades" : "Psychology of giftedness"}</small></span>
         </button>
@@ -229,6 +259,12 @@ export default function Navigation() {
           <button className="atlas-menu-button" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-label={lang === "es" ? "Abrir menú" : "Open menu"}>{menuOpen ? <X size={20} /> : <Menu size={20} />}</button>
         </div>
       </div>
+      {atlasNote && (
+        <aside className="atlas-easter-note is-visible" role="status" aria-live="polite">
+          <span>{lang === "es" ? "Nota al margen" : "Margin note"} · {String(atlasNote.index + 1).padStart(2, "0")}/{String(brandNotes.length).padStart(2, "0")}</span>
+          <p>{atlasNote.text}</p>
+        </aside>
+      )}
     </nav>
   );
 }
