@@ -261,7 +261,7 @@ export default function Navigation() {
       </div>
       {atlasNote && (
         <aside className="atlas-easter-note is-visible" role="status" aria-live="polite">
-          <span>{lang === "es" ? "Nota al margen" : "Margin note"}</span>
+          <span>{lang === "es" ? "Fuera del índice" : "Beyond the index"}</span>
           <p>{atlasNote.text}</p>
         </aside>
       )}

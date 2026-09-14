@@ -800,11 +800,11 @@ h1, h2, .gifted-index-card strong, .gifted-milestone h3, .atlas-panel-story h2 {
 .dark .brain-network-empty > p { color: #c8bdcf !important; }
 .dark .brain-network-source { color: #b8adc0; opacity: 1; }
 
-/* A margin note for persistent readers, never an achievement badge. */
+/* An unindexed editorial aside for persistent readers, never an achievement badge. */
 .atlas-easter-note {
   position: fixed;
-  right: clamp(0.8rem, 3vw, 2rem);
-  bottom: clamp(0.8rem, 3vw, 2rem);
+  right: max(clamp(0.8rem, 3vw, 2rem), env(safe-area-inset-right));
+  bottom: max(clamp(0.8rem, 3vw, 2rem), env(safe-area-inset-bottom));
   z-index: 120;
   width: min(390px, calc(100vw - 1.6rem));
   padding: 1rem 1.1rem;
@@ -816,9 +816,14 @@ h1, h2, .gifted-index-card strong, .gifted-milestone h3, .atlas-panel-story h2 {
   pointer-events: none;
   animation: atlas-note-in 200ms ease both;
 }
-.atlas-easter-note span { color: #bda4e5; font-size: 0.62rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; }
+.atlas-easter-note span { color: #c9b1ed; font-size: 0.64rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; }
+.atlas-easter-note span::before { content: ''; display: inline-block; width: 0.45rem; height: 1px; margin-right: 0.5rem; background: #9c79e4; vertical-align: middle; }
 .atlas-easter-note p { margin-top: 0.45rem; color: #eee7f3; font-family: 'Newsreader', Georgia, serif; font-size: 1.05rem; line-height: 1.45; }
 @keyframes atlas-note-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 600px) {
+  .atlas-easter-note { left: 0.75rem; right: 0.75rem; bottom: max(0.75rem, env(safe-area-inset-bottom)); width: auto; padding: 0.9rem 1rem; border-radius: 14px; }
+}
 
 /* Longitudinal evidence and assessment use the same neutral editorial
    surfaces as the rest of the atlas; color remains an accent, not a backdrop. */
