@@ -53,16 +53,16 @@ export default function CognitiveProfiles() {
     : { title: "Cognitive Profiles", subtitle: "Educational examples of domain strengths; they are not universal person types", note: "Abilities form heterogeneous profiles and should be interpreted with valid tests, confidence intervals, and context", chars: "Possible strengths:", neural: "Related networks in the literature:", execTitle: "Executive functions — individual variability", execNote: "There is no executive-function score typical of giftedness and no direct conversion between these functions and IQ.", asyncTitle: "Developmental Asynchrony", asyncSub: "Uneven development across domains may occur; it is not inevitable and cannot predict a person's emotional maturity", important: "Important:", importantText: "Asynchrony varies considerably between individuals. It is not a universal characteristic, and its manifestations are not numerically predictable." };
 
   return (
-    <section ref={ref} className={`py-20 bg-gradient-to-br from-purple-50 to-indigo-50 section-fade ${isVisible ? 'visible' : ''}`}>
+    <section ref={ref} className={`cognitive-profiles-section py-20 section-fade ${isVisible ? 'visible' : ''}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className="cognitive-profiles-heading text-center mb-16">
           <h2 className="text-4xl font-bold text-dark-slate mb-4">{labels.title}</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">{labels.subtitle}</p>
-          <p className="text-sm text-gray-400 mt-2 italic">{labels.note}</p>
+          <p className="cognitive-profile-note text-sm mt-2 italic">{labels.note}</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
           {cognitiveProfiles.map((profile, index) => (
-            <Card key={index} className={`card-hover border-0 shadow-lg ${profile.bgColor}`}>
+            <Card key={index} className={`cognitive-profile-card card-hover border shadow-lg ${profile.bgColor}`}>
               <CardContent className="p-6">
                 <div className="flex items-center mb-4">
                   <div className={`${profile.iconBg} w-12 h-12 rounded-lg flex items-center justify-center mr-4`}><profile.icon className={profile.iconColor} size={24} /></div>
@@ -80,13 +80,13 @@ export default function CognitiveProfiles() {
             </Card>
           ))}
         </div>
-        <Card className="shadow-lg mb-8">
+        <Card className="executive-functions-card shadow-lg mb-8">
           <CardContent className="p-8">
             <h3 className="text-2xl font-semibold text-gray-900 mb-2 text-center">{labels.execTitle}</h3>
-            <p className="text-center text-gray-500 text-sm mb-6 italic">{labels.execNote}</p>
+            <p className="executive-functions-note text-center text-sm mb-6 italic">{labels.execNote}</p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {executiveFunctions.map((func, index) => (
-                <div key={index} className="rounded-xl border border-blue-100 bg-blue-50/60 p-4">
+                <div key={index} className="executive-function-block rounded-xl border p-4">
                   <h4 className="font-semibold text-gray-900 mb-2">{func.function}</h4>
                   <p className="text-sm text-gray-700 leading-relaxed">{func.description}</p>
                 </div>
@@ -94,13 +94,13 @@ export default function CognitiveProfiles() {
             </div>
           </CardContent>
         </Card>
-        <Card className="shadow-lg">
+        <Card className="asynchrony-card shadow-lg">
           <CardContent className="p-8">
             <h3 className="text-2xl font-semibold text-gray-900 mb-4 text-center">{labels.asyncTitle}</h3>
             <p className="text-gray-600 text-center mb-8">{labels.asyncSub}</p>
             <div className="space-y-4">
               {developmentalAsynchrony.map((domain, index) => (
-                <div key={index} className="border rounded-lg p-4">
+                <div key={index} className="asynchrony-row border rounded-lg p-4">
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
                     <div><h4 className="font-semibold text-gray-900">{domain.domain}</h4></div>
                     <div><p className="text-sm text-gray-600">{domain.description}</p></div>
@@ -109,7 +109,7 @@ export default function CognitiveProfiles() {
                 </div>
               ))}
             </div>
-            <div className="mt-6 bg-yellow-50 p-4 rounded-lg"><p className="text-sm text-yellow-800"><strong>{labels.important}</strong> {labels.importantText}</p></div>
+            <div className="asynchrony-note mt-6 p-4 rounded-lg"><p className="text-sm"><strong>{labels.important}</strong> {labels.importantText}</p></div>
           </CardContent>
         </Card>
       </div>
