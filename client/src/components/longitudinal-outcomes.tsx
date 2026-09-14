@@ -78,7 +78,7 @@ export default function LongitudinalOutcomes() {
       };
 
   return (
-    <section ref={ref} className={`py-20 bg-gradient-to-br from-green-50 to-teal-50 section-fade ${isVisible ? "visible" : ""}`}>
+    <section ref={ref} className={`longitudinal-section py-20 section-fade ${isVisible ? "visible" : ""}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-dark-slate mb-4">{content.title}</h2>
@@ -87,12 +87,12 @@ export default function LongitudinalOutcomes() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-14">
           {content.studies.map((study) => (
-            <Card key={study.name} className="card-hover h-full">
+            <Card key={study.name} className="longitudinal-card card-hover h-full">
               <CardContent className="p-6">
                 <h3 className="text-xl font-semibold text-dark-slate">{study.name}</h3>
-                <p className="mt-2 text-sm font-medium text-emerald-700">{study.period}</p>
+                <p className="longitudinal-period mt-2 text-sm font-medium">{study.period}</p>
                 <p className="mt-4 text-gray-700 leading-7">{study.finding}</p>
-                <div className="mt-5 rounded-xl bg-amber-50 border border-amber-100 p-4">
+                <div className="longitudinal-limit mt-5 rounded-xl border p-4">
                   <p className="text-sm text-amber-900"><strong>{lang === "es" ? "Límite:" : "Limit:"}</strong> {study.limit}</p>
                 </div>
               </CardContent>
@@ -105,9 +105,9 @@ export default function LongitudinalOutcomes() {
           {content.questions.map((question) => {
             const Icon = question.icon;
             return (
-              <Card key={question.title} className="h-full">
+              <Card key={question.title} className="longitudinal-question-card h-full">
                 <CardContent className="p-6">
-                  <Icon aria-hidden="true" className="text-teal-600 mb-4" size={28} />
+                  <Icon aria-hidden="true" className="longitudinal-question-icon mb-4" size={28} />
                   <h4 className="font-semibold text-dark-slate">{question.title}</h4>
                   <p className="mt-2 text-sm leading-6 text-gray-600">{question.text}</p>
                 </CardContent>
@@ -116,7 +116,7 @@ export default function LongitudinalOutcomes() {
           })}
         </div>
 
-        <div className="rounded-3xl bg-slate-900 text-white p-8 sm:p-10">
+        <div className="longitudinal-conclusion rounded-3xl text-white p-8 sm:p-10">
           <h3 className="text-2xl font-semibold">{content.conclusionTitle}</h3>
           <p className="mt-4 text-slate-200 text-lg leading-8">{content.conclusion}</p>
           <p className="mt-5 text-xs leading-5 text-slate-400">{content.sources}</p>
