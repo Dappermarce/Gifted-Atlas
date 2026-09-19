@@ -51,7 +51,7 @@ export default function QuizComponent() {
   };
 
   return (
-    <div className="rounded-3xl border border-indigo-100 bg-gradient-to-br from-white to-indigo-50 p-6 sm:p-8 shadow-sm mb-16">
+    <div className="gifted-reading-quiz rounded-3xl border border-indigo-100 bg-gradient-to-br from-white to-indigo-50 p-6 sm:p-8 shadow-sm mb-16">
       <div className="max-w-3xl mx-auto text-center">
         <h3 className="text-2xl sm:text-3xl font-bold text-slate-900">{t.title}</h3>
         <p className="mt-4 text-slate-600 leading-7">{t.subtitle}</p>
@@ -68,7 +68,7 @@ export default function QuizComponent() {
               type="button"
               aria-pressed={active}
               onClick={() => setSelected(option.id)}
-              className={`text-left rounded-2xl border p-5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-offset-2 ${active ? "border-indigo-500 bg-indigo-50" : "border-slate-200 bg-white hover:border-indigo-300"}`}
+              className={`gifted-reading-route text-left rounded-2xl border p-5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-offset-2 ${active ? "is-active border-indigo-500 bg-indigo-50" : "border-slate-200 bg-white hover:border-indigo-300"}`}
             >
               <Icon aria-hidden="true" className="text-indigo-600 mb-3" size={24} />
               <span className="block font-bold text-slate-900">{option.title}</span>
@@ -79,7 +79,7 @@ export default function QuizComponent() {
       </div>
 
       {selectedOption && (
-        <div className="mt-6 rounded-2xl bg-slate-900 text-white p-6" aria-live="polite">
+        <div className="gifted-reading-result mt-6 rounded-2xl bg-slate-900 text-white p-6" aria-live="polite">
           <p className="text-xs font-semibold uppercase tracking-wider text-indigo-300">{t.selectedLabel}</p>
           <p className="mt-2 text-slate-200 leading-7">{selectedOption.description}</p>
           <button
