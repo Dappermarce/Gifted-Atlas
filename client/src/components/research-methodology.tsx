@@ -171,7 +171,7 @@ export default function ResearchMethodology() {
       };
 
   return (
-    <section id="metodologia-investigacion" ref={ref} className={`py-20 section-fade ${isVisible ? 'visible' : ''}`}>
+    <section id="metodologia-investigacion" ref={ref} className={`research-methodology-section py-20 section-fade ${isVisible ? 'visible' : ''}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
           <h2 className="text-4xl font-bold text-dark-slate mb-4">{labels.title}</h2>
@@ -242,11 +242,11 @@ export default function ResearchMethodology() {
             </div>
           </CardContent>
         </Card>
-        <Card className="shadow-lg">
+        <Card className="evidence-matrix-card shadow-lg">
           <CardContent className="p-8">
             <h3 className="text-2xl font-semibold text-dark-slate mb-4 text-center">{labels.evidenceMatrixTitle}</h3>
             <p className="text-gray-600 text-center mb-8">{labels.evidenceNote}</p>
-            <div className="overflow-x-auto rounded-xl border border-slate-200">
+            <div className="evidence-matrix-wrap overflow-x-auto rounded-xl border border-slate-200">
               <table className="w-full min-w-[920px] border-collapse text-left">
                 <thead className="bg-slate-900 text-white">
                   <tr>
@@ -257,7 +257,7 @@ export default function ResearchMethodology() {
                 </thead>
                 <tbody className="divide-y divide-slate-200 bg-white">
                   {evidenceMatrix.map((row) => (
-                    <tr key={row.question} className="align-top transition-colors hover:bg-blue-50/60">
+                  <tr key={row.question} className="evidence-matrix-row align-top transition-colors">
                       <th scope="row" className="px-5 py-5 w-[20%]">
                         <Badge variant="default" className="mb-2">{row.question}</Badge>
                         <p className="text-sm font-medium leading-relaxed text-dark-slate">{row.purpose}</p>
