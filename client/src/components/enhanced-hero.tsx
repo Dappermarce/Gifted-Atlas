@@ -159,12 +159,12 @@ export default function EnhancedHero() {
             </div>
           </div>
 
-          <p className="text-xs text-blue-300/50 mt-6 italic">{t.disclaimer}</p>
+          <p className="gifted-hero-disclaimer text-xs text-blue-300/50 mt-6 italic">{t.disclaimer}</p>
         </div>
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+      <div className="gifted-scroll-indicator absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
         <div className="w-6 h-10 border-2 border-white/40 rounded-full flex justify-center">
           <div className="w-1 h-3 bg-white/60 rounded-full mt-2 animate-pulse"></div>
         </div>
