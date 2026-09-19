@@ -146,7 +146,7 @@ export default function BrainNetworkMap() {
       ref={ref}
       className={`brain-network-section py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 section-fade ${isVisible ? 'visible' : ''}`}
     >
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="brain-network-heading text-center mb-10">
           <h2 className="text-4xl font-bold text-gray-900 mb-3">{t.title}</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-3">{t.subtitle}</p>
@@ -158,10 +158,10 @@ export default function BrainNetworkMap() {
 
         <Card className="brain-network-card shadow-xl overflow-hidden mb-8">
           <CardContent className="p-6 lg:p-10">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <div className="brain-network-layout grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
               {/* SVG hub-and-spoke */}
-              <div>
-                <svg viewBox="0 0 500 400" className="brain-network-svg w-full max-w-md mx-auto" aria-label={t.title}>
+              <div className="brain-network-canvas">
+                <svg viewBox="0 0 500 400" className="brain-network-svg w-full mx-auto" aria-label={t.title}>
                   {/* Spoke lines */}
                   {nodes.map(n => (
                     <line
