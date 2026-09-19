@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Pause, Play, SkipBack, SkipForward } from "lucide-react";
+import { Pause, Play, SkipBack, SkipForward, X } from "lucide-react";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { useLanguage } from "@/contexts/language-context";
 
@@ -8,6 +8,7 @@ export default function ScientificTimeline() {
   const { lang } = useLanguage();
   const [active, setActive] = useState(0);
   const [playing, setPlaying] = useState(false);
+  const [guideOpen, setGuideOpen] = useState(true);
 
   const milestones = lang === 'es'
     ? [
@@ -40,8 +41,8 @@ export default function ScientificTimeline() {
       ];
 
   const labels = lang === 'es'
-    ? { author: "Autor", significance: "Qué cambió", impact: "Qué dejó", details: "Cómo leerlo hoy", title: "Historia de la investigación de las altas capacidades", subtitle: "Doce hitos para recorrer una historia que nunca fue lineal. Pulsa reproducir o elige un año.", route: "Recorrido guiado", play: "Reproducir", pause: "Pausar", previous: "Hito anterior", next: "Hito siguiente", milestone: "Hito", of: "de", summaryTitle: "El recorrido, sin falsa precisión", years: "años de investigación", milestones: "hitos seleccionados", note: "La selección no es exhaustiva: las escuelas coexistieron, discreparon y cambiaron en paralelo." }
-    : { author: "Author", significance: "What changed", impact: "What remained", details: "How to read it today", title: "History of giftedness research", subtitle: "Twelve milestones in a history that was never linear. Press play or choose a year.", route: "Guided route", play: "Play", pause: "Pause", previous: "Previous milestone", next: "Next milestone", milestone: "Milestone", of: "of", summaryTitle: "The route, without false precision", years: "years of research", milestones: "selected milestones", note: "This selection is not exhaustive: schools coexisted, disagreed and changed in parallel." };
+    ? { author: "Autor", significance: "Qué cambió", impact: "Qué dejó", details: "Cómo leerlo hoy", title: "Historia de la investigación de las altas capacidades", subtitle: "Doce hitos para recorrer una historia que nunca fue lineal. Pulsa reproducir o elige un año.", route: "Recorrido guiado", play: "Reproducir", pause: "Pausar", previous: "Hito anterior", next: "Hito siguiente", hideGuide: "Ocultar recorrido", showGuide: "Mostrar recorrido", milestone: "Hito", of: "de", summaryTitle: "El recorrido, sin falsa precisión", years: "años de investigación", milestones: "hitos seleccionados", note: "La selección no es exhaustiva: las escuelas coexistieron, discreparon y cambiaron en paralelo." }
+    : { author: "Author", significance: "What changed", impact: "What remained", details: "How to read it today", title: "History of giftedness research", subtitle: "Twelve milestones in a history that was never linear. Press play or choose a year.", route: "Guided route", play: "Play", pause: "Pause", previous: "Previous milestone", next: "Next milestone", hideGuide: "Hide guide", showGuide: "Show guide", milestone: "Milestone", of: "of", summaryTitle: "The route, without false precision", years: "years of research", milestones: "selected milestones", note: "This selection is not exhaustive: schools coexisted, disagreed and changed in parallel." };
 
   useEffect(() => {
     setActive(0);
@@ -81,18 +82,23 @@ export default function ScientificTimeline() {
           <span>{labels.subtitle}</span>
         </header>
 
-        <div className="gifted-history-player">
-          <div className="gifted-player-status">
-            <small>{labels.milestone} {active + 1} {labels.of} {milestones.length}</small>
-            <strong>{selected.year} · {selected.title}</strong>
+        {guideOpen ? (
+          <div className={`gifted-history-player ${isVisible ? 'is-section-active' : ''}`}>
+            <button type="button" className="gifted-player-dismiss" onClick={() => { setPlaying(false); setGuideOpen(false); }} aria-label={labels.hideGuide} title={labels.hideGuide}><X size={16} /></button>
+            <div className="gifted-player-status">
+              <small>{labels.milestone} {active + 1} {labels.of} {milestones.length}</small>
+              <strong>{selected.year} · {selected.title}</strong>
+            </div>
+            <div className="gifted-player-controls">
+              <button onClick={() => move(active - 1)} disabled={active === 0} aria-label={labels.previous}><SkipBack size={17} /></button>
+              <button className="gifted-player-play" onClick={() => { if (!playing && active === milestones.length - 1) setActive(0); setPlaying(!playing); }} aria-pressed={playing}>{playing ? <Pause size={17} /> : <Play size={17} />}<span>{playing ? labels.pause : labels.play}</span></button>
+              <button onClick={() => move(active + 1)} disabled={active === milestones.length - 1} aria-label={labels.next}><SkipForward size={17} /></button>
+            </div>
+            <div className="gifted-player-progress" aria-hidden="true"><span style={{ width: `${((active + 1) / milestones.length) * 100}%` }} /></div>
           </div>
-          <div className="gifted-player-controls">
-            <button onClick={() => move(active - 1)} disabled={active === 0} aria-label={labels.previous}><SkipBack size={17} /></button>
-            <button className="gifted-player-play" onClick={() => { if (!playing && active === milestones.length - 1) setActive(0); setPlaying(!playing); }} aria-pressed={playing}>{playing ? <Pause size={17} /> : <Play size={17} />}<span>{playing ? labels.pause : labels.play}</span></button>
-            <button onClick={() => move(active + 1)} disabled={active === milestones.length - 1} aria-label={labels.next}><SkipForward size={17} /></button>
-          </div>
-          <div className="gifted-player-progress" aria-hidden="true"><span style={{ width: `${((active + 1) / milestones.length) * 100}%` }} /></div>
-        </div>
+        ) : (
+          <button type="button" className="gifted-player-restore" onClick={() => setGuideOpen(true)}><Play size={15} aria-hidden="true" /><span>{labels.showGuide}</span></button>
+        )}
 
         <nav className="gifted-year-rail" aria-label={lang === 'es' ? 'Hitos de la cronología' : 'Timeline milestones'}>
           {milestones.map((milestone, index) => (
