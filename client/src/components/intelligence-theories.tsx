@@ -46,20 +46,20 @@ export default function IntelligenceTheories() {
       };
 
   return (
-    <section ref={ref} className={`py-20 section-fade ${isVisible ? 'visible' : ''}`}>
+    <section ref={ref} className={`intelligence-theories-section py-20 section-fade ${isVisible ? 'visible' : ''}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-dark-slate mb-4">{t.title}</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">{t.subtitle}</p>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <Card className="shadow-lg">
+          <Card className="intelligence-theory-card shadow-lg">
             <CardContent className="p-8">
               <h3 className="text-2xl font-semibold text-dark-slate mb-6">{t.gardnerTitle}</h3>
               <p className="text-gray-600 mb-6">{t.gardnerText}</p>
               <div className="space-y-4">
                 {multipleIntelligences.map((intelligence, index) => (
-                  <div key={index} className={`flex items-center p-3 ${intelligence.bgClass} rounded-lg`}>
+                  <div key={index} className={`intelligence-theory-item flex items-center p-3 ${intelligence.bgClass} rounded-lg`}>
                     <intelligence.icon className={`${intelligence.color} w-6 h-6 mr-3`} />
                     <span className="font-medium">{intelligence.name}</span>
                   </div>
@@ -68,7 +68,7 @@ export default function IntelligenceTheories() {
             </CardContent>
           </Card>
           <div className="space-y-8">
-            <Card className="shadow-lg">
+            <Card className="intelligence-theory-card shadow-lg">
               <CardContent className="p-6">
                 <h4 className="text-xl font-semibold text-dark-slate mb-4">{t.sternbergTitle}</h4>
                 <div className="space-y-3">
@@ -78,7 +78,7 @@ export default function IntelligenceTheories() {
                 </div>
               </CardContent>
             </Card>
-            <Card className="shadow-lg">
+            <Card className="intelligence-theory-card shadow-lg">
               <CardContent className="p-6">
                 <h4 className="text-xl font-semibold text-dark-slate mb-4">{t.golemanTitle}</h4>
                 <div className="space-y-3">
