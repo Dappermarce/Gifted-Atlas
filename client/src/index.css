@@ -468,7 +468,7 @@ h1, h2, .gifted-index-card strong, .gifted-milestone h3, .atlas-panel-story h2 {
 .gifted-timeline-heading > p { margin-bottom: 0.75rem; color: var(--gifted-violet-strong); font-size: 0.68rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; }
 .gifted-timeline-heading h2 { max-width: 17ch; color: #211927; font-family: 'Newsreader', serif; font-size: clamp(2.6rem, 5.5vw, 4.8rem); font-weight: 600; line-height: 0.96; }
 .gifted-timeline-heading > span { display: block; max-width: 66ch; margin-top: 1rem; color: #6b6272; line-height: 1.65; }
-.gifted-history-player { position: sticky; top: 88px; z-index: 30; display: grid; grid-template-columns: minmax(230px, 1fr) auto; gap: 0.8rem 1rem; align-items: center; padding: 0.9rem 1rem; border: 1px solid #332a3d; border-radius: 17px; background: rgba(15,12,18,0.94); color: #f8f3fb; box-shadow: 0 18px 45px rgba(20,10,26,0.24); backdrop-filter: blur(16px); }
+.gifted-history-player { position: relative; top: auto; z-index: 2; display: grid; grid-template-columns: minmax(230px, 1fr) auto; gap: 0.8rem 1rem; align-items: center; padding: 0.9rem 1rem; border: 1px solid #332a3d; border-radius: 17px; background: rgba(15,12,18,0.94); color: #f8f3fb; box-shadow: 0 18px 45px rgba(20,10,26,0.24); backdrop-filter: blur(16px); }
 .gifted-player-status { display: grid; min-width: 0; }
 .gifted-player-status small { color: #a98bea; font-size: 0.61rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; }
 .gifted-player-status strong { overflow: hidden; margin-top: 0.2rem; font-size: 0.8rem; text-overflow: ellipsis; white-space: nowrap; }
@@ -563,7 +563,7 @@ h1, h2, .gifted-index-card strong, .gifted-milestone h3, .atlas-panel-story h2 {
   .gifted-index-heading { grid-template-columns: 1fr; gap: 1rem; }
   .gifted-index-grid { grid-template-columns: 1fr; }
   .gifted-index-card { min-height: 0; padding: 1.15rem; }
-  .gifted-history-player { top: 72px; grid-template-columns: 1fr; }
+  .gifted-history-player { top: auto; grid-template-columns: 1fr; }
   .gifted-player-controls { justify-content: space-between; }
   .gifted-player-controls button { flex: 1; }
   .gifted-player-controls .gifted-player-play { min-width: 0; }
@@ -800,11 +800,11 @@ h1, h2, .gifted-index-card strong, .gifted-milestone h3, .atlas-panel-story h2 {
 .dark .brain-network-empty > p { color: #c8bdcf !important; }
 .dark .brain-network-source { color: #b8adc0; opacity: 1; }
 
-/* A margin note for persistent readers, never an achievement badge. */
+/* An unindexed editorial aside for persistent readers, never an achievement badge. */
 .atlas-easter-note {
   position: fixed;
-  right: clamp(0.8rem, 3vw, 2rem);
-  bottom: clamp(0.8rem, 3vw, 2rem);
+  right: max(clamp(0.8rem, 3vw, 2rem), env(safe-area-inset-right));
+  bottom: max(clamp(0.8rem, 3vw, 2rem), env(safe-area-inset-bottom));
   z-index: 120;
   width: min(390px, calc(100vw - 1.6rem));
   padding: 1rem 1.1rem;
@@ -816,10 +816,14 @@ h1, h2, .gifted-index-card strong, .gifted-milestone h3, .atlas-panel-story h2 {
   pointer-events: none;
   animation: atlas-note-in 200ms ease both;
 }
-.atlas-easter-note span { color: #bda4e5; font-size: 0.62rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; }
+.atlas-easter-note span { color: #c9b1ed; font-size: 0.64rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; }
+.atlas-easter-note span::before { content: ''; display: inline-block; width: 0.45rem; height: 1px; margin-right: 0.5rem; background: #9c79e4; vertical-align: middle; }
 .atlas-easter-note p { margin-top: 0.45rem; color: #eee7f3; font-family: 'Newsreader', Georgia, serif; font-size: 1.05rem; line-height: 1.45; }
 @keyframes atlas-note-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 
+@media (max-width: 600px) {
+  .atlas-easter-note { left: 0.75rem; right: 0.75rem; bottom: max(0.75rem, env(safe-area-inset-bottom)); width: auto; padding: 0.9rem 1rem; border-radius: 14px; }
+}
 /* Longitudinal evidence and assessment use the same neutral editorial
    surfaces as the rest of the atlas; color remains an accent, not a backdrop. */
 .longitudinal-section,
@@ -925,4 +929,332 @@ h1, h2, .gifted-index-card strong, .gifted-milestone h3, .atlas-panel-story h2 {
 @media (max-width: 780px) {
   .editorial-thread { grid-template-columns: 1fr; margin-inline: 1rem; }
   .editorial-thread > i { display: none; }
+}
+
+/* =====================================================
+   SEPTEMBER 2026 — LAYOUT, SEARCH AND CONTRAST REPAIR
+   ===================================================== */
+
+/* A compact atlas search uses spare navigation space on wide screens and
+   moves into the open menu on mobile. */
+.atlas-search {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  flex: 0 1 190px;
+  align-items: center;
+  min-width: 145px;
+  margin-right: 0.2rem;
+  color: #6c6274;
+}
+.atlas-search > svg { position: absolute; left: 0.72rem; z-index: 1; pointer-events: none; }
+.atlas-search input {
+  width: 100%;
+  min-width: 0;
+  height: 38px;
+  padding: 0 0.75rem 0 2.1rem;
+  border: 1px solid #dcd4e5;
+  border-radius: 11px;
+  outline: none;
+  background: rgba(255,255,255,0.86);
+  color: #342c3b;
+  font: inherit;
+  font-size: 0.72rem;
+}
+.atlas-search input:focus { border-color: #8d6ac0; box-shadow: 0 0 0 3px rgba(118,81,214,0.13); }
+.atlas-search-results {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  z-index: 140;
+  display: grid;
+  width: min(360px, calc(100vw - 2rem));
+  padding: 0.4rem;
+  border: 1px solid #d8cde5;
+  border-radius: 14px;
+  background: #fbf9fc;
+  box-shadow: 0 20px 48px rgba(23,13,31,0.2);
+}
+.atlas-search-results button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.7rem;
+  min-height: 54px;
+  padding: 0.65rem 0.75rem;
+  border-radius: 10px;
+  color: #342b3c;
+  text-align: left;
+}
+.atlas-search-results button:hover,
+.atlas-search-results button:focus-visible { background: #eee8f5; color: #5630ab; }
+.atlas-search-results button > span { display: grid; min-width: 0; }
+.atlas-search-results strong { font-size: 0.76rem; }
+.atlas-search-results small { overflow: hidden; margin-top: 0.2rem; color: #716678; font-size: 0.61rem; text-overflow: ellipsis; white-space: nowrap; }
+.atlas-search-results svg { flex: none; }
+.dark .atlas-search { color: #bfb3c7; }
+.dark .atlas-search input { border-color: #392f42; background: #17131b; color: #f0e9f4; }
+.dark .atlas-search-results { border-color: #392f42; background: #151118; }
+.dark .atlas-search-results button { color: #eee8f2; }
+.dark .atlas-search-results button:hover,
+.dark .atlas-search-results button:focus-visible { background: #2a2033; color: #fff; }
+.dark .atlas-search-results small { color: #b8adc0; }
+
+@media (min-width: 1380px) {
+  .atlas-nav-shell { width: min(1440px, 100%); padding-inline: 0.9rem; }
+  .atlas-nav-groups { gap: 0.25rem; }
+  .atlas-nav-trigger { padding-inline: 0.78rem; }
+  .atlas-search { flex-basis: 220px; }
+}
+
+/* Keep the authorial aside visually calm, aligned and immediately bilingual. */
+.atlas-easter-note { display: grid; align-content: start; text-align: left; }
+.atlas-easter-note span { display: flex; align-items: center; min-height: 18px; }
+.atlas-easter-note p { max-width: 32ch; text-wrap: pretty; }
+
+/* The decorative motion remains behind the credit and never crosses it. */
+.gifted-hero-disclaimer {
+  position: relative;
+  z-index: 3;
+  max-width: 62ch;
+  margin-inline: auto;
+  padding: 0.65rem 1rem;
+  border: 1px solid rgba(197,177,255,0.14);
+  border-radius: 999px;
+  background: rgba(10,7,14,0.62);
+  color: #c7bad0 !important;
+  line-height: 1.5;
+}
+.gifted-scroll-indicator { z-index: 1; bottom: 1rem; opacity: 0.72; }
+
+/* Giftedness map and theory cards use real editorial surfaces rather than
+   utility whites that leak through in dark mode. */
+.talent-map-section,
+.intelligence-theories-section {
+  background:
+    radial-gradient(circle at 14% 0%, rgba(118,81,214,0.1), transparent 34%),
+    #f5f2f8;
+}
+.talent-map-factor,
+.talent-map-model,
+.intelligence-theory-card {
+  border-color: #ddd3e5 !important;
+  background: #ffffff !important;
+  color: #302738;
+}
+.talent-map-factor p,
+.talent-map-model p,
+.intelligence-theory-card p { color: #62586a !important; opacity: 1; }
+.intelligence-theory-item { border: 1px solid #e1d8e8; background: #f5f0f8 !important; color: #342b3c; }
+.dark .talent-map-section,
+.dark .intelligence-theories-section { background-image: none; background-color: #0d0a10; }
+.dark .talent-map-section :is(h2, h3),
+.dark .intelligence-theories-section :is(h2, h3, h4) { color: #f4eef7 !important; }
+.dark .talent-map-section > div > div:first-child p,
+.dark .intelligence-theories-section > div > div:first-child p { color: #c4bac9 !important; opacity: 1; }
+.dark .talent-map-factor,
+.dark .talent-map-model,
+.dark .intelligence-theory-card {
+  border-color: #392e43 !important;
+  background: #18131d !important;
+  color: #eee8f2;
+  box-shadow: none;
+}
+.dark .talent-map-factor p,
+.dark .talent-map-model p,
+.dark .intelligence-theory-card p { color: #c8bdcf !important; opacity: 1; }
+.dark .talent-map-model > div:first-child { color: #cbb2f5 !important; }
+.dark .intelligence-theory-item {
+  border-color: #43354e;
+  background: #241b2c !important;
+  color: #eee8f2;
+}
+.dark .talent-map-output { border: 1px solid #7559a2; background-image: none !important; background-color: #2b1d3a !important; }
+
+/* Give the cognition network enough canvas for labels and put every label on
+   an opaque halo above its connection line. */
+.brain-network-layout { grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr) !important; }
+.brain-network-canvas { min-width: 0; padding: 0.4rem; }
+.brain-network-svg { max-width: 680px; min-height: 440px; }
+.brain-network-node-label { stroke-width: 4px; font-size: 10px; }
+.brain-network-node-circle { stroke-width: 2px; }
+.brain-network-spoke { stroke-width: 1.7px; stroke-dasharray: 5 5; }
+
+/* Research matrix and bibliography hovers preserve contrast in both themes. */
+.evidence-matrix-card,
+.bibliography-card { border-color: #ddd3e5; background: #fff; }
+.evidence-matrix-wrap { border-color: #d8cfe0; }
+.evidence-matrix-row { background: #fff; color: #302738; }
+.evidence-matrix-row:hover { background: #f1ebf6; }
+.evidence-matrix-row :is(th, td) { transition: background 160ms ease, color 160ms ease; }
+.bibliography-card-heading { background: #eee8f5 !important; border-color: #d7cae3 !important; }
+.bibliography-card-heading h3 { color: #583b78 !important; }
+.bibliography-entry { background: #fff; }
+.bibliography-entry:hover { background: #f1ebf6; }
+.bibliography-entry p { color: #443a4c !important; opacity: 1; }
+.dark .research-methodology-section,
+.dark .bibliography-section { background: #0d0a10 !important; }
+.dark .evidence-matrix-card,
+.dark .bibliography-card { border-color: #392e43; background: #18131d !important; }
+.dark .evidence-matrix-wrap { border-color: #41334b !important; }
+.dark .evidence-matrix-row { background: #18131d !important; }
+.dark .evidence-matrix-row:hover { background: #2a2033 !important; }
+.dark .evidence-matrix-row :is(th, td, p) { color: #ddd3e4 !important; }
+.dark .bibliography-card-heading { border-color: #4a3958 !important; background: #241b2c !important; }
+.dark .bibliography-card-heading h3 { color: #dcc8f4 !important; }
+.dark .bibliography-entry { background: #18131d; border-color: #392e43; }
+.dark .bibliography-entry:hover { background: #2a2033; }
+.dark .bibliography-entry p { color: #d6ccdC !important; }
+.dark .bibliography-entry a { color: #cbb2f5 !important; }
+
+/* Timeline cards grow with content and wrap long titles without leaking. */
+.gifted-history-player:not(.is-section-active) { display: none; }
+.gifted-milestone,
+.gifted-milestone-title,
+.gifted-milestone-grid,
+.gifted-milestone-grid > div { min-width: 0; }
+.gifted-milestone { min-height: 0; align-items: stretch; }
+.gifted-milestone-title { min-height: 340px; }
+.gifted-milestone-title h3,
+.gifted-milestone-title p,
+.gifted-milestone-grid p,
+.gifted-history-summary p { overflow-wrap: anywhere; text-wrap: pretty; }
+.gifted-milestone-grid > div { justify-content: flex-start; }
+.gifted-history-summary > p strong { display: block; margin-bottom: 0.35rem; }
+
+/* Resource anchors remain single click targets and every resource card uses
+   the same hover language as the bibliography. */
+.resource-index { justify-content: center; margin-top: -0.75rem; }
+.resource-index a {
+  justify-content: space-between;
+  flex: 1 1 220px;
+  max-width: 290px;
+  color: #4d346c;
+  line-height: 1.35;
+}
+.resource-index a:hover,
+.resource-index a:focus-visible { border-color: #8f6bd5; background: #fff; color: #4e2aa4; }
+#recursos [class*="shadow-lg"] { border-color: #ddd3e5; }
+.dark #recursos [class*="shadow-lg"] { border-color: #392e43; background: #18131d !important; }
+.dark .resource-index a:hover,
+.dark .resource-index a:focus-visible { border-color: #9c79e4; background: #2a2033; color: #fff; }
+
+/* Reading-route mini quiz: clear selection, calm feedback, no diagnostic tone. */
+.gifted-reading-quiz { border-color: #d8cde5 !important; background-image: none !important; background: #f5f1f8 !important; }
+.gifted-reading-route { min-height: 158px; border-color: #ddd3e5; background: #fff !important; }
+.gifted-reading-route:hover,
+.gifted-reading-route:focus-visible { border-color: #8f6bd5 !important; background: #f7f3fa !important; }
+.gifted-reading-route.is-active { border-color: #7651d6 !important; background: #eee8f6 !important; box-shadow: inset 4px 0 0 #7651d6; }
+.gifted-reading-result { border: 1px solid #3a2e45; background: #17121c !important; }
+.dark .gifted-reading-quiz { border-color: #392e43 !important; background: #121016 !important; }
+.dark .gifted-reading-route { border-color: #40334b; background: #1b1621 !important; }
+.dark .gifted-reading-route:hover,
+.dark .gifted-reading-route:focus-visible { border-color: #9c79e4 !important; background: #241b2c !important; }
+.dark .gifted-reading-route.is-active { border-color: #a98bea !important; background: #2a2033 !important; box-shadow: inset 4px 0 0 #a98bea; }
+
+.advanced-quiz-card { border-color: #d8cde5; background: #fff; }
+.advanced-quiz-option { min-height: 58px; border-color: #ddd3e5 !important; background: #fff !important; line-height: 1.45; }
+.advanced-quiz-option:hover,
+.advanced-quiz-option:focus-visible { border-color: #8f6bd5 !important; background: #f5f0f8 !important; }
+.advanced-quiz-option.is-selected { border-color: #7651d6 !important; background: #eee8f6 !important; box-shadow: inset 4px 0 0 #7651d6; }
+.advanced-quiz-step { background: #e9e2ef !important; color: #5c5265 !important; }
+.advanced-quiz-step.is-current { background: #7651d6 !important; color: #fff !important; }
+.advanced-quiz-step.is-complete { background: #4d3b60 !important; color: #fff !important; }
+.advanced-quiz-result { background: #f7f3fa !important; border-color: #d9cfe2 !important; }
+.advanced-quiz-result.is-correct { border-left: 4px solid #4b8a68 !important; }
+.advanced-quiz-result.is-review { border-left: 4px solid #9a6471 !important; }
+.dark .advanced-assessment-section { background-image: none !important; background-color: #0d0a10 !important; }
+.dark .advanced-quiz-card { border-color: #392e43; background: #18131d !important; }
+.dark .advanced-quiz-option { border-color: #40334b !important; background: #211a27 !important; color: #eee8f2 !important; }
+.dark .advanced-quiz-option:hover,
+.dark .advanced-quiz-option:focus-visible { border-color: #9c79e4 !important; background: #2a2033 !important; }
+.dark .advanced-quiz-option.is-selected { border-color: #a98bea !important; background: #30233b !important; box-shadow: inset 4px 0 0 #a98bea; }
+.dark .advanced-quiz-step { background: #2a2033 !important; color: #c8bdcf !important; }
+.dark .advanced-quiz-step.is-current { background: #7651d6 !important; color: #fff !important; }
+.dark .advanced-quiz-step.is-complete { background: #4d3b60 !important; color: #fff !important; }
+.dark .advanced-quiz-result { border-color: #40334b !important; background: #211a27 !important; }
+.dark .advanced-quiz-result p { color: #d7cddd !important; opacity: 1; }
+
+@media (max-width: 1180px) {
+  .atlas-search { display: none; }
+}
+
+@media (max-width: 900px) {
+  .atlas-brand-copy { display: grid; }
+  .atlas-brand-copy small { display: none; }
+  .atlas-brand-copy strong { font-size: 0.82rem; }
+  .atlas-nav-groups .atlas-search {
+    display: flex;
+    width: calc(100% - 0.4rem);
+    margin: 0.2rem 0.2rem 0.55rem;
+  }
+  .atlas-search input { height: 44px; font-size: 0.8rem; }
+  .atlas-search-results { position: static; width: 100%; margin-top: 0.35rem; }
+  .brain-network-layout { grid-template-columns: 1fr !important; }
+  .brain-network-svg { min-height: 0; }
+}
+
+@media (max-width: 720px) {
+  .gifted-hero-disclaimer { margin-bottom: 2.75rem; border-radius: 14px; }
+  .gifted-scroll-indicator { display: none; }
+  .brain-network-canvas { overflow-x: auto; overscroll-behavior-inline: contain; }
+  .brain-network-svg { width: 620px; max-width: none; }
+  .gifted-milestone-title { min-height: 230px; }
+  .gifted-year-rail button { min-height: 88px; }
+  .gifted-reading-route { min-height: 0; }
+  .resource-index a { max-width: none; }
+}
+
+@media (max-width: 430px) {
+  .atlas-brand-copy strong { font-size: 0.76rem; }
+  .atlas-nav-actions { gap: 0.25rem; }
+  .atlas-nav-actions > button { min-width: 34px; width: 34px; padding: 0; }
+  .atlas-search-results small { white-space: normal; }
+  .gifted-milestone { padding: 0.55rem; }
+  .gifted-milestone-title,
+  .gifted-milestone-grid > div { padding: 1rem; }
+  .gifted-history-summary { grid-template-columns: 1fr; }
+  .gifted-history-summary > p { grid-column: auto; }
+}
+
+@media (max-width: 360px) {
+  .atlas-brand-copy { display: none; }
+}
+
+/* Final pass: the guided controller stays in normal flow and never follows
+   the reader over the timeline. Both language versions can hide or restore it. */
+.gifted-history-player { position: relative; top: auto; z-index: 2; padding-right: 3.7rem; }
+.gifted-player-dismiss {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.7rem;
+  width: 34px;
+  min-width: 34px !important;
+  height: 34px !important;
+  padding: 0 !important;
+  border-radius: 9px !important;
+}
+.gifted-player-restore {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  margin-bottom: 1rem;
+  padding: 0.7rem 1rem;
+  border: 1px solid #7651d6;
+  border-radius: 12px;
+  background: #20172a;
+  color: #f4eef7;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+.gifted-player-restore:hover,
+.gifted-player-restore:focus-visible { border-color: #aa8bf0; background: #2a2035; }
+.advanced-quiz-progress { min-width: 0; flex-wrap: wrap; }
+
+@media (max-width: 720px) {
+  .gifted-history-player { top: auto; grid-template-columns: 1fr; padding: 3.2rem 0.9rem 0.9rem; }
+  .advanced-quiz-progress { max-width: calc(100vw - 8rem); flex-wrap: nowrap; overflow-x: auto; padding-bottom: 0.25rem; }
+  .advanced-quiz-step { flex: 0 0 2rem; }
 }
