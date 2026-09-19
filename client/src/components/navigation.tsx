@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { ArrowUpRight, Brain, ChevronDown, Menu, Moon, Sun, X } from "lucide-react";
+import { ArrowUpRight, Brain, ChevronDown, Menu, Moon, Search, Sun, X } from "lucide-react";
 import { useLanguage } from "@/contexts/language-context";
 
 type NavItem = { id: string; label: string; note: string };
@@ -11,7 +11,8 @@ export default function Navigation() {
   const [openGroup, setOpenGroup] = useState<string | null>(null);
   const [activeSection, setActiveSection] = useState("inicio");
   const [dark, setDark] = useState(false);
-  const [atlasNote, setAtlasNote] = useState<{ text: string } | null>(null);
+  const [atlasNoteIndex, setAtlasNoteIndex] = useState<number | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const noteTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const brandClickCount = useRef(0);
@@ -140,6 +141,15 @@ export default function Navigation() {
     },
   ], [lang]);
 
+  const searchableItems = useMemo(
+    () => groups.flatMap(group => group.items.map(item => ({ ...item, group: group.label }))),
+    [groups],
+  );
+  const normalizedQuery = searchQuery.trim().toLocaleLowerCase(lang === "es" ? "es" : "en");
+  const searchResults = normalizedQuery
+    ? searchableItems.filter(item => `${item.label} ${item.note} ${item.group}`.toLocaleLowerCase(lang === "es" ? "es" : "en").includes(normalizedQuery)).slice(0, 6)
+    : [];
+
   useEffect(() => {
     const saved = localStorage.getItem("gifted-atlas-theme");
     const initial = saved ? saved === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -193,6 +203,7 @@ export default function Navigation() {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
     setMenuOpen(false);
     setOpenGroup(null);
+    setSearchQuery("");
   };
 
   const handleBrandClick = () => {
@@ -201,9 +212,9 @@ export default function Navigation() {
     if (brandClickCount.current % 5 !== 0) return;
 
     const index = brandClickCount.current / 5 - 1;
-    setAtlasNote({ text: brandNotes[index] });
+    setAtlasNoteIndex(index);
     if (noteTimer.current) clearTimeout(noteTimer.current);
-    noteTimer.current = setTimeout(() => setAtlasNote(null), 5400);
+    noteTimer.current = setTimeout(() => setAtlasNoteIndex(null), 5400);
     if (index === brandNotes.length - 1) brandClickCount.current = 0;
   };
 
@@ -218,6 +229,30 @@ export default function Navigation() {
         </button>
 
         <div className={`atlas-nav-groups ${menuOpen ? "is-open" : ""}`}>
+          <div className="atlas-search">
+            <Search size={15} aria-hidden="true" />
+            <label className="sr-only" htmlFor="atlas-search-input">{lang === "es" ? "Buscar en Gifted Atlas" : "Search Gifted Atlas"}</label>
+            <input
+              id="atlas-search-input"
+              type="search"
+              value={searchQuery}
+              onChange={event => setSearchQuery(event.target.value)}
+              placeholder={lang === "es" ? "Buscar tema" : "Search topic"}
+              autoComplete="off"
+              aria-controls="atlas-search-results"
+              aria-expanded={searchResults.length > 0}
+            />
+            {searchResults.length > 0 && (
+              <div id="atlas-search-results" className="atlas-search-results" role="listbox">
+                {searchResults.map(item => (
+                  <button key={item.id} type="button" role="option" onClick={() => goTo(item.id)}>
+                    <span><strong>{item.label}</strong><small>{item.group} · {item.note}</small></span>
+                    <ArrowUpRight size={14} aria-hidden="true" />
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
           {groups.map(group => (
             <div
               className={`atlas-nav-group ${openGroup === group.id ? "is-open" : ""}`}
@@ -259,10 +294,10 @@ export default function Navigation() {
           <button className="atlas-menu-button" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-label={lang === "es" ? "Abrir menú" : "Open menu"}>{menuOpen ? <X size={20} /> : <Menu size={20} />}</button>
         </div>
       </div>
-      {atlasNote && (
+      {atlasNoteIndex !== null && (
         <aside className="atlas-easter-note is-visible" role="status" aria-live="polite">
           <span>{lang === "es" ? "Fuera del índice" : "Beyond the index"}</span>
-          <p>{atlasNote.text}</p>
+          <p>{brandNotes[atlasNoteIndex]}</p>
         </aside>
       )}
     </nav>
