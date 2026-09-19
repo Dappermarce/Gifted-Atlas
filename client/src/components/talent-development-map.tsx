@@ -53,7 +53,7 @@ export default function TalentDevelopmentMap() {
     <section
       id="mapa-superdotacion"
       ref={ref}
-      className={`py-20 bg-gradient-to-br from-blue-50 via-purple-50 to-green-50 section-fade ${isVisible ? 'visible' : ''}`}
+      className={`talent-map-section py-20 bg-gradient-to-br from-blue-50 via-purple-50 to-green-50 section-fade ${isVisible ? 'visible' : ''}`}
     >
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
@@ -71,7 +71,7 @@ export default function TalentDevelopmentMap() {
             {t.inputs.map((inp, i) => (
               <div
                 key={i}
-                className="rounded-2xl border-2 p-5 flex flex-col items-center text-center shadow-sm hover:shadow-md transition-shadow"
+                className="talent-map-factor rounded-2xl border-2 p-5 flex flex-col items-center text-center shadow-sm hover:shadow-md transition-shadow"
                 style={{ backgroundColor: inp.bg, borderColor: inp.border }}
               >
                 <div
@@ -107,7 +107,7 @@ export default function TalentDevelopmentMap() {
           </div>
 
           {/* Output box */}
-          <div className="bg-gradient-to-br from-indigo-600 to-purple-700 rounded-2xl p-6 text-center text-white shadow-xl w-full max-w-sm">
+          <div className="talent-map-output bg-gradient-to-br from-indigo-600 to-purple-700 rounded-2xl p-6 text-center text-white shadow-xl w-full max-w-sm">
             <div className="text-3xl font-extrabold mb-1 tracking-tight">⭐ {t.output}</div>
             <p className="text-indigo-200 text-sm">{t.outputDesc}</p>
           </div>
@@ -118,7 +118,7 @@ export default function TalentDevelopmentMap() {
           <h3 className="text-xl font-semibold text-gray-800 mb-5 text-center">{t.modelsTitle}</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {t.models.map((m, i) => (
-              <div key={i} className="bg-white rounded-xl border border-gray-200 p-5 shadow-sm hover:shadow-md transition-shadow">
+              <div key={i} className="talent-map-model bg-white rounded-xl border border-gray-200 p-5 shadow-sm hover:shadow-md transition-shadow">
                 <div className="font-bold text-indigo-700 mb-1 text-sm">{m.name}</div>
                 <div className="text-xs text-gray-500 mb-2 italic">{m.author}</div>
                 <p className="text-sm text-gray-700">{m.desc}</p>
