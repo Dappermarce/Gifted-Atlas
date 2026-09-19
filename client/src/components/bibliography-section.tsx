@@ -119,7 +119,7 @@ export default function BibliographySection() {
     : { title: "Where the atlas ends and the sources begin", subtitle: "An organized selection of peer-reviewed articles, academic books, historical models, and professional organizations. A reference does not decorate a claim: it makes the claim checkable.", doi: "DOI:", note: "This is a curated selection, not a systematic review or guarantee of consensus. Academic research should record search terms, databases, dates, inclusion criteria, and quality appraisal.", noteLabel: "Note:" };
 
   return (
-    <section id="bibliografia" ref={ref} className={`py-20 bg-gray-50 section-fade ${isVisible ? 'visible' : ''}`}>
+    <section id="bibliografia" ref={ref} className={`bibliography-section py-20 bg-gray-50 section-fade ${isVisible ? 'visible' : ''}`}>
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <div className="bg-indigo-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -134,8 +134,8 @@ export default function BibliographySection() {
             const Icon = cat.icon;
             const catLabel = categoryLabels[cat.id as keyof typeof categoryLabels];
             return (
-              <Card key={cat.id} className="shadow-md overflow-hidden">
-                <div className={`${cat.bgColor} border-b ${cat.borderColor} p-5 flex items-center gap-3`}>
+              <Card key={cat.id} className="bibliography-card shadow-md overflow-hidden">
+                <div className={`bibliography-card-heading ${cat.bgColor} border-b ${cat.borderColor} p-5 flex items-center gap-3`}>
                   <div className={`${cat.bgColor} rounded-lg p-2 border ${cat.borderColor}`}>
                     <Icon className={cat.color} size={22} />
                   </div>
@@ -145,7 +145,7 @@ export default function BibliographySection() {
                 <CardContent className="p-0">
                   <ul className="divide-y divide-gray-100">
                     {cat.refs.map((ref, i) => (
-                      <li key={i} className="p-4 hover:bg-gray-50 transition-colors">
+                      <li key={i} className="bibliography-entry p-4 transition-colors">
                         <p className="text-sm text-gray-800 leading-relaxed">
                           {'url' in ref && ref.url
                             ? <a href={ref.url} target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:underline">{ref.citation}</a>
