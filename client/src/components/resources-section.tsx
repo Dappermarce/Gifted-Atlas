@@ -1,5 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Globe, Award, Heart, BookOpen } from "lucide-react";
+import { Globe, Award, Heart, BookOpen, ArrowUpRight } from "lucide-react";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { useLanguage } from "@/contexts/language-context";
 
@@ -41,10 +41,11 @@ const universitiesData = [
 ];
 
 const organizationsData = [
-  { acronym: "NAGC", name_es: "National Association for Gifted Children (EE.UU.)", name_en: "National Association for Gifted Children (USA)" },
-  { acronym: "WCGTC", name_es: "World Council for Gifted and Talented Children", name_en: "World Council for Gifted and Talented Children" },
-  { acronym: "ECHA", name_es: "European Council for High Ability", name_en: "European Council for High Ability" },
-  { acronym: "SENG", name_es: "Supporting Emotional Needs of the Gifted", name_en: "Supporting Emotional Needs of the Gifted" },
+  { acronym: "NAGC", name: "National Association for Gifted Children", note_es: "Estados Unidos · educación e incidencia profesional", note_en: "United States · education and professional advocacy", url: "https://www.nagc.org/" },
+  { acronym: "WCGTC", name: "World Council for Gifted and Talented Children", note_es: "Red internacional de investigación y educación", note_en: "International research and education network", url: "https://world-gifted.org/" },
+  { acronym: "ECHA", name: "European Council for High Ability", note_es: "Red europea de profesionales e investigación", note_en: "European professional and research network", url: "https://echa.info/" },
+  { acronym: "SENG", name: "Supporting Emotional Needs of the Gifted", note_es: "Apoyo socioemocional y formación", note_en: "Socioemotional support and education", url: "https://www.sengifted.org/" },
+  { acronym: "AACC Chile", name: "Fundación Altas Capacidades Chile", note_es: "Chile · orientación a familias y comunidades educativas", note_en: "Chile · guidance for families and educational communities", url: "https://altascapacidades.cl/" },
 ];
 
 export default function ResourcesSection() {
@@ -122,20 +123,21 @@ export default function ResourcesSection() {
         <Card className="mt-16 shadow-lg">
           <CardContent className="p-8">
             <h3 id="resources-organizations" className="text-2xl font-semibold text-dark-slate mb-8 text-center">{t.orgsTitle}</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
               {organizationsData.map((org, index) => {
                 const icons = [Globe, Award, Heart, BookOpen];
                 const IconComponent = icons[index % icons.length];
                 const colors = ['text-primary', 'text-sky-blue', 'text-green-500', 'text-purple-500'];
                 const bgColors = ['bg-primary/10', 'bg-sky-blue/10', 'bg-green-500/10', 'bg-purple-500/10'];
                 return (
-                  <div key={index} className="text-center">
+                  <a key={org.acronym} className="organization-card text-center" href={org.url} target="_blank" rel="noopener noreferrer">
                     <div className={`${bgColors[index % bgColors.length]} w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-4`}>
                       <IconComponent className={colors[index % colors.length]} size={32} />
                     </div>
-                    <h4 className="font-semibold text-dark-slate mb-2">{org.acronym}</h4>
-                    <p className="text-gray-600 text-sm">{lang === 'es' ? org.name_es : org.name_en}</p>
-                  </div>
+                    <h4 className="font-semibold text-dark-slate mb-2">{org.acronym} <ArrowUpRight className="inline-block organization-arrow" size={14} aria-hidden="true" /></h4>
+                    <p className="text-gray-700 text-sm font-medium">{org.name}</p>
+                    <p className="organization-note text-xs mt-2">{lang === 'es' ? org.note_es : org.note_en}</p>
+                  </a>
                 );
               })}
             </div>
