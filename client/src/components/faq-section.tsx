@@ -79,8 +79,8 @@ export default function FaqSection() {
     <section id="preguntas-frecuentes" ref={ref} className={`py-20 bg-gradient-to-br from-sky-50 to-blue-50 section-fade ${isVisible ? 'visible' : ''}`}>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-            <HelpCircle className="text-blue-600" size={32} />
+          <div className="faq-symbol w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6" aria-hidden="true">
+            <HelpCircle size={34} strokeWidth={2.4} />
           </div>
           <h2 className="text-4xl font-bold text-dark-slate mb-4">{labels.title}</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">{labels.subtitle}</p>
@@ -88,16 +88,18 @@ export default function FaqSection() {
 
         <div className="space-y-4">
           {faqs.map((faq, index) => (
-            <Card key={index} className="shadow-md hover:shadow-lg transition-shadow duration-200">
+            <Card key={index} className="faq-card shadow-md hover:shadow-lg transition-shadow duration-200">
               <CardContent className="p-0">
                 <button
                   onClick={() => setOpenIndex(openIndex === index ? null : index)}
                   className="w-full flex items-center justify-between p-6 text-left"
                 >
                   <span className="font-semibold text-dark-slate text-base pr-4">{faq.question}</span>
-                  {openIndex === index
-                    ? <ChevronUp className="text-primary flex-shrink-0" size={20} />
-                    : <ChevronDown className="text-gray-400 flex-shrink-0" size={20} />}
+                  <span className="faq-chevron" aria-hidden="true">
+                    {openIndex === index
+                      ? <ChevronUp size={20} />
+                      : <ChevronDown size={20} />}
+                  </span>
                 </button>
                 {openIndex === index && (
                   <div className="px-6 pb-6">
