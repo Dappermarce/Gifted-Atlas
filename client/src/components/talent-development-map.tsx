@@ -59,7 +59,7 @@ export default function TalentDevelopmentMap() {
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-gray-900 mb-3">{t.title}</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-3">{t.subtitle}</p>
-          <span className="inline-block bg-amber-50 border border-amber-200 text-amber-700 text-xs rounded-full px-4 py-1.5 font-medium">
+          <span className="inline-block border border-violet-300 bg-violet-100 px-4 py-1.5 text-xs font-semibold text-violet-950 opacity-100 rounded-full dark:border-violet-700 dark:bg-[#251b2e] dark:text-[#f1e7fa]">
             {t.disclaimer}
           </span>
         </div>
