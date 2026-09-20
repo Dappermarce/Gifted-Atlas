@@ -295,7 +295,7 @@ export default function Navigation() {
         </div>
       </div>
       {atlasNoteIndex !== null && (
-        <aside className="atlas-easter-note is-visible" role="status" aria-live="polite">
+        <aside key={`atlas-note-${lang}-${atlasNoteIndex}`} className="atlas-easter-note is-visible" role="status" aria-live="polite">
           <span>{lang === "es" ? "Fuera del índice" : "Beyond the index"}</span>
           <p>{brandNotes[atlasNoteIndex]}</p>
         </aside>
