@@ -1,6 +1,7 @@
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { useLanguage } from "@/contexts/language-context";
 import { Card, CardContent } from "@/components/ui/card";
+import { Scale } from "lucide-react";
 
 export default function EvaluationFlowMap() {
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.1 });
@@ -37,8 +38,8 @@ export default function EvaluationFlowMap() {
             num: "04",
             label: "Fortalezas y barreras",
             desc: "Se distinguen dominios de fortaleza, necesidades de apoyo y posibles barreras. Una diferencia entre índices no es automáticamente un diagnóstico.",
-            color: "#F59E0B", bg: "#FFFBEB", border: "#FDE68A",
-            icon: "⚖️",
+            color: "#B65F08", bg: "#FFF7ED", border: "#FDBA74",
+            icon: "scale",
           },
           {
             num: "05",
@@ -82,8 +83,8 @@ export default function EvaluationFlowMap() {
             num: "04",
             label: "Strengths and barriers",
             desc: "Areas of strength, support needs, and possible barriers are distinguished. A difference between indices is not automatically a diagnosis.",
-            color: "#F59E0B", bg: "#FFFBEB", border: "#FDE68A",
-            icon: "⚖️",
+            color: "#B65F08", bg: "#FFF7ED", border: "#FDBA74",
+            icon: "scale",
           },
           {
             num: "05",
@@ -130,7 +131,9 @@ export default function EvaluationFlowMap() {
                   className="relative z-10 w-14 h-14 rounded-full flex flex-col items-center justify-center text-white font-bold flex-shrink-0 shadow-md"
                   style={{ backgroundColor: step.color }}
                 >
-                  <span className="text-lg leading-none">{step.icon}</span>
+                  {step.icon === "scale"
+                    ? <Scale aria-hidden="true" size={22} strokeWidth={2.4} />
+                    : <span className="text-lg leading-none" aria-hidden="true">{step.icon}</span>}
                 </div>
 
                 {/* Content card */}
