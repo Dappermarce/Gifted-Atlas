@@ -55,7 +55,7 @@ export default function QuizComponent() {
       <div className="max-w-3xl mx-auto text-center">
         <h3 className="text-2xl sm:text-3xl font-bold text-slate-900">{t.title}</h3>
         <p className="mt-4 text-slate-600 leading-7">{t.subtitle}</p>
-        <p className="mt-4 inline-block rounded-full bg-amber-50 border border-amber-200 px-4 py-2 text-xs font-semibold text-amber-800">{t.notice}</p>
+        <p className="gifted-reading-notice mt-4 inline-block rounded-full border px-4 py-2 text-xs font-semibold">{t.notice}</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
