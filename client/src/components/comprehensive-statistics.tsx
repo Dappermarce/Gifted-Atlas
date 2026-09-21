@@ -146,17 +146,20 @@ export default function ComprehensiveStatistics() {
           </CardContent>
         </Card>
         <Card className="shadow-lg mb-16">
-          <CardContent className="p-8">
+          <CardContent className="p-5 sm:p-8">
             <h3 className="text-2xl font-semibold text-dark-slate mb-4 text-center">{labels.cogTitle}</h3>
             <p className="text-center text-gray-500 text-sm mb-6 italic">{labels.cogNote}</p>
             <div className="space-y-4">
               {cognitiveDistribution.map((range, index) => {
                 const borderClass = range.color === 'blue' ? 'border-blue-500' : range.color === 'purple' ? 'border-purple-500' : 'border-red-500';
                 return (
-                <div key={index} className={`border-l-4 ${borderClass} pl-4 py-3 bg-white rounded-r-lg`}>
-                  <div className="flex justify-between items-center">
-                    <div><span className="font-semibold text-dark-slate">{range.range}</span><span className="ml-3 text-gray-600">— {range.classification}</span></div>
-                    <Badge variant="outline" className="text-xs">{range.description}</Badge>
+                <div key={index} className={`border-l-4 ${borderClass} py-3 pl-4 pr-3 sm:pr-4 bg-white rounded-r-lg`}>
+                  <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-between">
+                    <div className="min-w-0 leading-relaxed">
+                      <span className="block font-semibold text-dark-slate sm:inline">{range.range}</span>
+                      <span className="block text-gray-600 sm:ml-3 sm:inline">— {range.classification}</span>
+                    </div>
+                    <Badge variant="outline" className="w-fit max-w-full self-start justify-start whitespace-normal rounded-full px-3 py-2 text-left text-xs leading-snug sm:max-w-52 sm:self-auto sm:justify-center sm:text-center">{range.description}</Badge>
                   </div>
                 </div>
                 );
