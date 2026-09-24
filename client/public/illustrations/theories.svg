@@ -1,11 +1,46 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="title desc">
-  <title id="title">Different theories of intelligence</title>
-  <desc id="desc">Original abstract puzzle showing complementary models.</desc>
-  <rect width="800" height="600" rx="42" fill="#f6f2fb"/>
-  <g transform="translate(150 75)">
-    <path d="M0 0h205v110c28-28 90-8 90 41s-62 69-90 41v108H95c29-27 8-89-41-89s-69 62-41 89H0Z" fill="#7651d6"/>
-    <path d="M205 0h205v96c-29-28-90-8-90 41s61 69 90 41v122H300c28-27 8-89-41-89s-69 62-41 89h-13V192c28 28 90 8 90-41s-62-69-90-41Z" fill="#55a6b7"/>
-    <path d="M0 300h95c-28 29-8 90 41 90s69-61 41-90h123v110c-28-28-90-8-90 41s62 69 90 41v13H0Z" fill="#d494b0"/>
-    <path d="M300 300h110V178c28 28 90 8 90-41s-62-69-90-41V0h90v505H300v-13c28 28 90 8 90-41s-62-69-90-41Z" fill="#8f85d9"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 480" role="img" aria-labelledby="title desc">
+  <title id="title">Comparison of two influential models of intelligence</title>
+  <desc id="desc">Original schematic comparing Gardner's eight domains with Sternberg's analytical, creative and practical dimensions.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#f7f4ff"/>
+      <stop offset="1" stop-color="#e8f4f7"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#34234d" flood-opacity=".12"/>
+    </filter>
+  </defs>
+  <rect width="900" height="480" rx="36" fill="url(#bg)"/>
+  <path d="M450 54v372" stroke="#8f7ab5" stroke-width="2" stroke-dasharray="8 10" opacity=".45"/>
+  <g transform="translate(225 238)" filter="url(#shadow)">
+    <circle r="174" fill="#fff" stroke="#7651d6" stroke-width="5"/>
+    <g stroke="#b9a8e9" stroke-width="8" stroke-linecap="round">
+      <path d="M0-48V-120M34-34l85-85M48 0h72M34 34l85 85M0 48v72M-34 34l-85 85M-48 0h-72M-34-34l-85-85"/>
+    </g>
+    <g fill="#7651d6" stroke="#fff" stroke-width="5">
+      <circle cy="-132" r="25"/><circle cx="94" cy="-94" r="25"/>
+      <circle cx="132" r="25"/><circle cx="94" cy="94" r="25"/>
+      <circle cy="132" r="25"/><circle cx="-94" cy="94" r="25"/>
+      <circle cx="-132" r="25"/><circle cx="-94" cy="-94" r="25"/>
+    </g>
+    <circle r="62" fill="#4a3272"/>
+    <text y="-5" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="22" font-weight="700">GARDNER</text>
+    <text y="23" text-anchor="middle" fill="#ddd2f5" font-family="Arial, sans-serif" font-size="16">1983 · 8</text>
+  </g>
+  <g transform="translate(675 238)" filter="url(#shadow)">
+    <circle r="174" fill="#fff" stroke="#55a6b7" stroke-width="5"/>
+    <path d="M0-105 112 90H-112Z" fill="none" stroke="#55a6b7" stroke-width="12" stroke-linejoin="round"/>
+    <path d="M0-105 0 5M112 90 0 5M-112 90 0 5" stroke="#bddde4" stroke-width="8" stroke-linecap="round"/>
+    <g stroke="#fff" stroke-width="5">
+      <circle cy="-105" r="37" fill="#7651d6"/>
+      <circle cx="112" cy="90" r="37" fill="#d494b0"/>
+      <circle cx="-112" cy="90" r="37" fill="#55a6b7"/>
+    </g>
+    <text y="-95" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="24" font-weight="700">A</text>
+    <text x="112" y="99" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="24" font-weight="700">C</text>
+    <text x="-112" y="99" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="24" font-weight="700">P</text>
+    <circle cy="5" r="61" fill="#324f5a"/>
+    <text y="0" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="19" font-weight="700">STERNBERG</text>
+    <text y="26" text-anchor="middle" fill="#d7edf1" font-family="Arial, sans-serif" font-size="16">1985 · 3</text>
   </g>
 </svg>
