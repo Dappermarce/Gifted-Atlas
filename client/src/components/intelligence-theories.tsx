@@ -86,8 +86,8 @@ export default function IntelligenceTheories() {
                 </div>
               </CardContent>
             </Card>
-            <img src="https://images.pexels.com/photos/7296640/pexels-photo-7296640.jpeg?auto=compress&cs=tinysrgb&w=800" alt={t.imgAlt} className="rounded-lg shadow-lg w-full h-48 object-cover" />
-            <p className="text-xs text-gray-400">{t.source} <a href="https://www.pexels.com/photo/top-view-of-various-wooden-puzzles-and-brain-teasers-on-a-white-table-7296640/" target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-600">Pexels</a></p>
+            <img src="/illustrations/theories.svg" alt={t.imgAlt} className="rounded-lg shadow-lg w-full h-48 object-cover" />
+            <p className="text-xs text-gray-400">{t.source} Gifted Atlas · {lang === 'es' ? 'ilustración original' : 'original illustration'}</p>
           </div>
         </div>
       </div>

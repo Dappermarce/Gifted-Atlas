@@ -23,7 +23,7 @@ export default function GiftednessSection() {
         type1: "Capacidad general o específica", type1desc: "Razonamiento general o aptitudes destacadas en dominios concretos, según el modelo utilizado.",
         type2: "Creatividad y producción", type2desc: "Algunos modelos incorporan originalidad, pensamiento divergente y producción creativa junto con la capacidad.",
         type3: "Factores psicosociales", type3desc: "Motivación, apoyo, oportunidades y contexto pueden favorecer o limitar el desarrollo del talento; no constituyen una categoría diagnóstica.",
-        source: "Fuente:",
+        source: "Fuente:", imgAlt: "Ilustración conceptual sobre aprendizaje y exploración de ideas",
       }
     : {
         title: "What does giftedness actually mean?",
@@ -40,7 +40,7 @@ export default function GiftednessSection() {
         type1: "General or specific ability", type1desc: "General reasoning or outstanding aptitude in specific domains, depending on the model used.",
         type2: "Creativity and production", type2desc: "Some models include originality, divergent thinking, and creative production alongside ability.",
         type3: "Psychosocial factors", type3desc: "Motivation, support, opportunities, and context may foster or limit talent development; they are not a diagnostic category.",
-        source: "Source:",
+        source: "Source:", imgAlt: "Conceptual illustration of learning and exploring ideas",
       };
 
   return (
@@ -81,7 +81,7 @@ export default function GiftednessSection() {
             </Card>
           </div>
           <div className="space-y-6">
-            <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" alt="Gifted child solving mathematical problems" className="rounded-xl shadow-lg w-full" />
+            <img src="/illustrations/learning.svg" alt={t.imgAlt} className="rounded-xl shadow-lg w-full" />
             <p className="text-xs text-gray-500 -mt-4">{t.source} <a href="https://www.nagc.org/news/rethinking-giftedness-a-shift-toward-talent-development-in-schools" target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-700">National Association for Gifted Children — talent development overview</a></p>
             <Card className="bg-sky-blue/5 border-sky-blue/20">
               <CardContent className="p-6">

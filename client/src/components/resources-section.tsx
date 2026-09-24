@@ -27,7 +27,7 @@ const articlesData = [
   { title: "The Effects of Acceleration on High-Ability Learners", author: "Steenbergen-Hu & Moon", journal: "Gifted Child Quarterly, 2011" },
   { title: "Study of Mathematically Precocious Youth After 35 Years", author: "Lubinski & Benbow", journal: "Perspectives on Psychological Science, 2006" },
   { title: "The Parieto-Frontal Integration Theory of Intelligence", author: "Jung & Haier", journal: "Behavioral and Brain Sciences, 2007" },
-  { title: "Identifying Gifted and Talented English Learners", author: "Hodges et al.", journal: "Journal for the Education of the Gifted, 2018" },
+  { title: "Identifying Gifted and Talented English Language Learners: A Case Study", author: "Harris, Plucker, Rapp & Mart\u00ednez", journal: "Journal for the Education of the Gifted, 2009" },
   { title: "Life Paths of Mathematically Precocious Youth Four Decades Later", author: "Lubinski et al.", journal: "Psychological Science, 2014" },
 ];
 
@@ -95,8 +95,8 @@ export default function ResourcesSection() {
             <CardContent className="p-6">
               <div className="flex items-center mb-6"><Award className="text-sky-blue mr-3" size={24} /><h3 id="resources-articles" className="text-xl font-semibold text-dark-slate">{t.articlesTitle}</h3></div>
               <div className="space-y-4">
-                {articlesData.map((article, index) => (
-                  <div key={index} className="border-b border-gray-200 pb-4 last:border-b-0">
+                {articlesData.map((article) => (
+                  <div key={article.title} className="border-b border-gray-200 pb-4 last:border-b-0">
                     <h4 className="font-semibold text-dark-slate text-sm leading-snug">{article.title}</h4>
                     <p className="text-gray-600 text-xs mt-1">{article.author}</p>
                     <p className="text-gray-500 text-xs">{article.journal}</p>
@@ -109,8 +109,8 @@ export default function ResourcesSection() {
             <CardContent className="p-6">
               <div className="flex items-center mb-6"><Globe className="text-green-500 mr-3" size={24} /><h3 id="resources-centers" className="text-xl font-semibold text-dark-slate">{t.centersTitle}</h3></div>
               <div className="space-y-4">
-                {universitiesData.map((center, index) => (
-                  <div key={index} className="border-b border-gray-200 pb-4 last:border-b-0">
+                {universitiesData.map((center) => (
+                  <div key={center.name} className="border-b border-gray-200 pb-4 last:border-b-0">
                     <h4 className="font-semibold text-dark-slate text-sm">{center.name}</h4>
                     <p className="text-gray-600 text-xs">{lang === 'es' ? center.program_es : center.program_en}</p>
                     <p className="text-gray-500 text-xs mt-1">{center.location}</p>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="title desc">
+  <title id="title">Coordinated support</title>
+  <desc id="desc">Original abstract illustration of people and supports surrounding one learner.</desc>
+  <rect width="800" height="600" rx="42" fill="#f5eff9"/>
+  <circle cx="400" cy="300" r="112" fill="#fff" stroke="#7651d6" stroke-width="12"/>
+  <circle cx="400" cy="268" r="38" fill="#7651d6"/>
+  <path d="M331 374c9-55 43-79 69-79s60 24 69 79" fill="#9d83db"/>
+  <g fill="#55a6b7"><circle cx="194" cy="175" r="38"/><circle cx="606" cy="175" r="38"/><circle cx="194" cy="425" r="38"/><circle cx="606" cy="425" r="38"/></g>
+  <g stroke="#8d70c6" stroke-width="12" stroke-linecap="round"><path d="m232 199 81 51M568 199l-81 51M232 401l81-51M568 401l-81-51"/></g>
+  <g fill="#d494b0"><path d="M143 246c10-43 31-63 51-63s41 20 51 63Z"/><path d="M555 246c10-43 31-63 51-63s41 20 51 63Z"/><path d="M143 496c10-43 31-63 51-63s41 20 51 63Z"/><path d="M555 496c10-43 31-63 51-63s41 20 51 63Z"/></g>
+</svg>

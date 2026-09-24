@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { ArrowUpRight, Brain, ChevronDown, Menu, Moon, Search, Sun, X } from "lucide-react";
+import { ArrowUpRight, Brain, ChevronDown, Globe2, Menu, Moon, Search, Sun, X } from "lucide-react";
 import { useLanguage } from "@/contexts/language-context";
 
 type NavItem = { id: string; label: string; note: string };
@@ -13,9 +13,12 @@ export default function Navigation() {
   const [dark, setDark] = useState(false);
   const [atlasNoteIndex, setAtlasNoteIndex] = useState<number | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [searchOpen, setSearchOpen] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const noteTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const brandClickCount = useRef(0);
+  const searchWrapRef = useRef<HTMLDivElement>(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
   const openPreview = (id: string) => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
@@ -178,6 +181,11 @@ export default function Navigation() {
     const closeOnEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         const active = document.activeElement;
+        if (active instanceof HTMLElement && active.closest('.atlas-search')) {
+          setSearchOpen(false);
+          document.querySelector<HTMLButtonElement>('.atlas-search-toggle')?.focus();
+          return;
+        }
         const group = active instanceof HTMLElement ? active.closest('.atlas-nav-group') : null;
         group?.querySelector<HTMLButtonElement>('.atlas-nav-trigger')?.focus();
         setOpenGroup(null);
@@ -191,6 +199,20 @@ export default function Navigation() {
     return () => document.removeEventListener("keydown", closeOnEscape);
   }, []);
 
+  useEffect(() => {
+    const closeOnOutsidePress = (event: PointerEvent) => {
+      if (searchOpen && !searchWrapRef.current?.contains(event.target as Node)) {
+        setSearchOpen(false);
+      }
+    };
+    document.addEventListener("pointerdown", closeOnOutsidePress);
+    return () => document.removeEventListener("pointerdown", closeOnOutsidePress);
+  }, [searchOpen]);
+
+  useEffect(() => {
+    if (searchOpen) searchInputRef.current?.focus();
+  }, [searchOpen]);
+
   const setTheme = () => {
     const next = !dark;
     setDark(next);
@@ -203,6 +225,7 @@ export default function Navigation() {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
     setMenuOpen(false);
     setOpenGroup(null);
+    setSearchOpen(false);
     setSearchQuery("");
   };
 
@@ -228,12 +251,12 @@ export default function Navigation() {
           <span className="atlas-brand-copy"><strong>Gifted Atlas</strong><small>{lang === "es" ? "Psicología de las altas capacidades" : "Psychology of giftedness"}</small></span>
         </button>
 
-        <div className={`atlas-nav-groups ${menuOpen ? "is-open" : ""}`}>
-          <div className="atlas-search">
+        <div ref={searchWrapRef} className={`atlas-search ${searchOpen ? "is-open" : ""}`}>
             <Search size={15} aria-hidden="true" />
             <label className="sr-only" htmlFor="atlas-search-input">{lang === "es" ? "Buscar en Gifted Atlas" : "Search Gifted Atlas"}</label>
             <input
               id="atlas-search-input"
+              ref={searchInputRef}
               type="search"
               value={searchQuery}
               onChange={event => setSearchQuery(event.target.value)}
@@ -252,7 +275,9 @@ export default function Navigation() {
                 ))}
               </div>
             )}
-          </div>
+        </div>
+
+        <div className={`atlas-nav-groups ${menuOpen ? "is-open" : ""}`}>
           {groups.map(group => (
             <div
               className={`atlas-nav-group ${openGroup === group.id ? "is-open" : ""}`}
@@ -289,9 +314,16 @@ export default function Navigation() {
         </div>
 
         <div className="atlas-nav-actions">
+          <button
+            className="atlas-search-toggle"
+            onClick={() => { setSearchOpen(!searchOpen); setMenuOpen(false); setOpenGroup(null); }}
+            aria-label={lang === "es" ? "Buscar en Gifted Atlas" : "Search Gifted Atlas"}
+            aria-expanded={searchOpen}
+            aria-controls="atlas-search-input"
+          ><Search size={17} aria-hidden="true" /></button>
           <button onClick={setTheme} aria-label={lang === "es" ? "Cambiar tema" : "Change theme"} aria-pressed={dark}>{dark ? <Sun size={17} /> : <Moon size={17} />}</button>
-          <button className="atlas-lang" onClick={toggleLang} aria-label={lang === "es" ? "Switch to English" : "Cambiar a español"}>{lang === "es" ? "EN" : "ES"}</button>
-          <button className="atlas-menu-button" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-label={lang === "es" ? "Abrir menú" : "Open menu"}>{menuOpen ? <X size={20} /> : <Menu size={20} />}</button>
+          <button className="atlas-lang" onClick={toggleLang} aria-label={lang === "es" ? "Switch to English" : "Cambiar a español"}><Globe2 size={16} aria-hidden="true" /><span>{lang === "es" ? "EN" : "ES"}</span></button>
+          <button className="atlas-menu-button" onClick={() => { setMenuOpen(!menuOpen); setSearchOpen(false); }} aria-expanded={menuOpen} aria-label={lang === "es" ? "Abrir menú" : "Open menu"}>{menuOpen ? <X size={20} /> : <Menu size={20} />}</button>
         </div>
       </div>
       {atlasNoteIndex !== null && (

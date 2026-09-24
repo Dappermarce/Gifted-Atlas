@@ -27,13 +27,13 @@ export default function ResearchMethodology() {
         { year: "2007", breakthrough: "Teoría P-FIT de la inteligencia", lead: "Jung & Haier", sample: "Revisión de 37 estudios de neuroimagen", effect: "Síntesis de asociaciones distribuidas", impact: "Modelo influyente, no biomarcador diagnóstico" },
         { year: "2011", breakthrough: "Metaanálisis sobre aceleración", lead: "Steenbergen-Hu & Moon", sample: "Síntesis de estudios educativos", effect: "Resultados favorables en contextos analizados", impact: "La decisión debe adaptarse al estudiante y al entorno" },
         { year: "2014", breakthrough: "Trayectorias a cuatro décadas", lead: "Lubinski et al.", sample: "Cohorte SMPY seleccionada por capacidad matemática", effect: "Diversidad de logros y trayectorias", impact: "No representa a todas las personas con altas capacidades" },
-        { year: "2018", breakthrough: "Identificación de estudiantes aprendices de inglés", lead: "Hodges et al.", sample: "Investigación sobre equidad educativa", effect: "Los procedimientos influyen en la representación", impact: "La identificación universal y contextual puede reducir sesgos" },
+        { year: "2009", breakthrough: "Identificación de estudiantes aprendices de inglés", lead: "Harris et al.", sample: "Estudio de caso en un distrito escolar", effect: "Documenta un proceso de identificación con varias fuentes", impact: "Muestra por qué importan el idioma, los criterios locales y el contexto" },
       ]
     : [
         { year: "2007", breakthrough: "P-FIT theory of intelligence", lead: "Jung & Haier", sample: "Review of 37 neuroimaging studies", effect: "Synthesis of distributed associations", impact: "Influential model, not a diagnostic biomarker" },
         { year: "2011", breakthrough: "Meta-analysis of acceleration", lead: "Steenbergen-Hu & Moon", sample: "Synthesis of educational studies", effect: "Favorable outcomes in analyzed contexts", impact: "Decisions should be adapted to the student and setting" },
         { year: "2014", breakthrough: "Four-decade trajectories", lead: "Lubinski et al.", sample: "SMPY cohort selected for mathematical ability", effect: "Diverse achievements and trajectories", impact: "Does not represent every gifted person" },
-        { year: "2018", breakthrough: "Identifying English learners", lead: "Hodges et al.", sample: "Research on educational equity", effect: "Procedures affect representation", impact: "Universal, contextual screening may reduce bias" },
+        { year: "2009", breakthrough: "Identifying English learners", lead: "Harris et al.", sample: "Case study in one school district", effect: "Documents a multi-source identification process", impact: "Shows why language, local criteria, and context matter" },
       ];
 
   const globalResearchCenters = lang === 'es'
@@ -190,8 +190,8 @@ export default function ResearchMethodology() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-          {methodologicalApproaches.map((approach, index) => (
-            <Card key={index} className="card-hover overflow-hidden">
+          {methodologicalApproaches.map((approach) => (
+            <Card key={approach.title} className="card-hover overflow-hidden">
               <div className={`h-2 bg-gradient-to-r ${approach.gradientFrom} ${approach.gradientTo}`}></div>
               <CardContent className="p-6">
                 <div className="flex items-center mb-4">
@@ -199,7 +199,7 @@ export default function ResearchMethodology() {
                   <h3 className="text-xl font-semibold text-dark-slate">{approach.title}</h3>
                 </div>
                 <div className="space-y-3">
-                  <div><p className="text-xs text-gray-500 font-medium uppercase tracking-wide">{labels.techniques}</p><div className="flex flex-wrap gap-1 mt-1">{approach.techniques.map((t, i) => (<Badge key={i} variant="outline" className="text-xs">{t}</Badge>))}</div></div>
+                  <div><p className="text-xs text-gray-500 font-medium uppercase tracking-wide">{labels.techniques}</p><div className="flex flex-wrap gap-1 mt-1">{approach.techniques.map((t) => (<Badge key={t} variant="outline" className="text-xs">{t}</Badge>))}</div></div>
                   <div><p className="text-xs text-gray-500 font-medium uppercase tracking-wide">{labels.typicalSamples}</p><p className="text-sm text-gray-700">{approach.sampleSizes}</p></div>
                   <div><p className="text-xs text-gray-500 font-medium uppercase tracking-wide">{labels.reliability}</p><p className="text-sm text-gray-700">{approach.reliability}</p></div>
                   <div className="bg-blue-50 p-3 rounded-lg"><p className="text-sm text-blue-800"><strong>{labels.keyFinding}</strong> {approach.findings}</p></div>
@@ -213,8 +213,8 @@ export default function ResearchMethodology() {
             <h3 className="text-2xl font-semibold text-dark-slate mb-6 text-center">{labels.recentFindings}</h3>
             <p className="text-center text-gray-500 text-sm mb-6 italic">{labels.recentNote}</p>
             <div className="space-y-4">
-              {keyResearchFindings.map((finding, index) => (
-                <div key={index} className="border rounded-lg p-4">
+              {keyResearchFindings.map((finding) => (
+                <div key={`${finding.year}-${finding.breakthrough}`} className="border rounded-lg p-4">
                   <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
                     <div className="text-center"><div className="text-2xl font-bold text-primary">{finding.year}</div></div>
                     <div className="md:col-span-2"><h4 className="font-semibold text-dark-slate">{finding.breakthrough}</h4><p className="text-sm text-gray-500">{finding.lead}</p><p className="text-xs text-gray-400 mt-1">{finding.sample}</p></div>
@@ -231,8 +231,8 @@ export default function ResearchMethodology() {
             <h3 className="text-2xl font-semibold text-dark-slate mb-6 text-center">{labels.leadingCenters}</h3>
             <p className="text-center text-gray-500 text-sm mb-6 italic">{labels.centersNote}</p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {globalResearchCenters.map((center, index) => (
-                <div key={index} className="border rounded-lg p-6">
+              {globalResearchCenters.map((center) => (
+                <div key={center.name} className="border rounded-lg p-6">
                   <h4 className="font-semibold text-dark-slate text-base mb-1">{center.name}</h4>
                   <p className="text-gray-500 text-sm mb-2">{center.location}</p>
                   <Badge variant="outline" className="text-xs mb-3">{center.focus}</Badge>

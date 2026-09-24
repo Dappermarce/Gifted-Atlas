@@ -12,9 +12,9 @@ const categories = [
     bgColor: "bg-blue-50",
     borderColor: "border-blue-300",
     refs: [
-      { citation: "Hodges, J., et al. (2018). Identifying gifted and talented English learners. Journal for the Education of the Gifted, 41(2), 176–198.", doi: "10.1177/0162353218763490" },
+      { citation: "Harris, B., Plucker, J. A., Rapp, K. E., & Martínez, R. S. (2009). Identifying gifted and talented English language learners: A case study. Journal for the Education of the Gifted, 32(3), 368–393.", doi: "10.4219/jeg-2009-858" },
       { citation: "Steenbergen-Hu, S., & Moon, S. M. (2011). The effects of acceleration on high-ability learners: A meta-analysis. Gifted Child Quarterly, 55(1), 39–53.", doi: "10.1177/0016986210383155" },
-      { citation: "Colom, R., et al. (2010). Fluid intelligence, memory span, and temperament difficulties predict academic performance of gifted students. Personality and Individual Differences, 48(5), 571–576.", doi: "10.1016/j.paid.2009.12.015" },
+      { citation: "Colom, R., Escorial, S., Shih, P. C., & Privado, J. (2007). Fluid intelligence, memory span, and temperament difficulties predict academic performance of young adolescents. Personality and Individual Differences, 42(8), 1503–1514.", doi: "10.1016/j.paid.2006.10.023" },
       { citation: "Plucker, J. A., & Callahan, C. M. (Eds.) (2014). Critical issues and practices in gifted education (2nd ed.). Prufrock Press.", doi: null },
       { citation: "VanTassel-Baska, J., & Stambaugh, T. (Eds.) (2006). Comprehensive curriculum for gifted learners (3rd ed.). Allyn & Bacon.", doi: null },
     ],
@@ -27,8 +27,8 @@ const categories = [
     borderColor: "border-purple-300",
     refs: [
       { citation: "Terman, L. M. (1925–1959). Genetic studies of genius (Vols. 1–5). Stanford University Press.", doi: null },
-      { citation: "Lubinski, D., & Benbow, C. P. (2006). Study of Mathematically Precocious Youth after 35 years. Perspectives on Psychological Science, 1(4), 316–345.", doi: "10.1111/j.1745-6924.2006.00019.x" },
-      { citation: "Lubinski, D., et al. (2014). Life paths and accomplishments of mathematically precocious males and females four decades later. Psychological Science, 25(12), 2217–2232.", doi: "10.1177/0956797614551371" },
+      { citation: "Lubinski, D., & Benbow, C. P. (2006). Study of Mathematically Precocious Youth after 35 years: Uncovering antecedents for the development of math-science expertise. Perspectives on Psychological Science, 1(4), 316–345.", doi: "10.1111/j.1745-6916.2006.00019.x" },
+      { citation: "Lubinski, D., Benbow, C. P., & Kell, H. J. (2014). Life paths and accomplishments of mathematically precocious males and females four decades later. Psychological Science, 25(12), 2217–2232.", doi: "10.1177/0956797614551371", note: { es: "Este artículo tiene una corrección editorial publicada en 2015 (DOI: 10.1177/0956797615575525).", en: "This article has an editorial correction published in 2015 (DOI: 10.1177/0956797615575525)." } },
       { citation: "Heller, K. A. (2004). Identification of gifted and talented students. Psychology Science, 46(Suppl.), 302–323.", doi: null },
       { citation: "Winner, E. (2000). The origins and ends of giftedness. American Psychologist, 55(1), 159–169.", doi: "10.1037/0003-066X.55.1.159" },
     ],
@@ -42,7 +42,7 @@ const categories = [
     refs: [
       { citation: "Jung, R. E., & Haier, R. J. (2007). The parieto-frontal integration theory (P-FIT) of intelligence. Behavioral and Brain Sciences, 30(2), 135–154.", doi: "10.1017/S0140525X07001185" },
       { citation: "Neubauer, A. C., & Fink, A. (2009). Intelligence and neural efficiency. Neuroscience & Biobehavioral Reviews, 33(7), 1004–1023.", doi: "10.1016/j.neubiorev.2009.04.001" },
-      { citation: "Colom, R., et al. (2006). General intelligence and memory span: Evidence for a common neuroanatomic framework. Cognitive Neuropsychology, 23(8), 1203–1212.", doi: "10.1080/02643290600875781" },
+      { citation: "Colom, R., Jung, R. E., & Haier, R. J. (2007). General intelligence and memory span: Evidence for a common neuroanatomic framework. Cognitive Neuropsychology, 24(8), 867–878.", doi: "10.1080/02643290701781557" },
       { citation: "Haier, R. J., et al. (1988). Cortical glucose metabolic rate correlates of abstract reasoning and attention studied with positron emission tomography. Intelligence, 12(2), 199–217.", doi: "10.1016/0160-2896(88)90016-5" },
     ],
   },
@@ -155,6 +155,9 @@ export default function BibliographySection() {
                           <a href={`https://doi.org/${ref.doi}`} target="_blank" rel="noopener noreferrer" className="text-xs text-blue-500 hover:underline mt-1 inline-block">
                             {labels.doi} {ref.doi}
                           </a>
+                        )}
+                        {'note' in ref && ref.note && (
+                          <p className="mt-2 text-xs text-amber-800">{ref.note[lang]}</p>
                         )}
                       </li>
                     ))}

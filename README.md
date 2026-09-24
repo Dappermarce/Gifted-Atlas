@@ -30,14 +30,19 @@ npm install
 npm run dev
 ```
 
-Autoría y revisión profesional
+Autoría y estado de revisión
 
 Última revisión: septiembre de 2026.
+
+El proyecto es una publicación educativa independiente y no equivale a una revisión sistemática, una guía clínica ni un artículo sometido a revisión por pares. Las correcciones, el alcance de la revisión y las limitaciones se documentan en `REVIEW_AND_CORRECTIONS.md`.
 
 Documentación del proyecto
 
 - `CITATION.cff`: información de autoría y citación del proyecto.
 - `CRITERIOS_DE_CONTENIDO.md`: fuentes, voz, límites y reglas de inferencia.
 - `CONTRIBUTING.md`: procedimiento para proponer correcciones verificables.
+- `PRIVACY.md`: datos locales, servicios externos y límites de privacidad.
+- `SECURITY.md`: procedimiento responsable para comunicar vulnerabilidades.
+- `REVIEW_AND_CORRECTIONS.md`: estado académico, verificación y registro de correcciones.
 
 La voz del proyecto busca explicar conceptos complejos sin convertirlos en frases frías: claridad primero, términos técnicos cuando hacen falta y certeza solo cuando la evidencia se la ha ganado.

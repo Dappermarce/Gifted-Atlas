@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="title desc">
+  <title id="title">Different theories of intelligence</title>
+  <desc id="desc">Original abstract puzzle showing complementary models.</desc>
+  <rect width="800" height="600" rx="42" fill="#f6f2fb"/>
+  <g transform="translate(150 75)">
+    <path d="M0 0h205v110c28-28 90-8 90 41s-62 69-90 41v108H95c29-27 8-89-41-89s-69 62-41 89H0Z" fill="#7651d6"/>
+    <path d="M205 0h205v96c-29-28-90-8-90 41s61 69 90 41v122H300c28-27 8-89-41-89s-69 62-41 89h-13V192c28 28 90 8 90-41s-62-69-90-41Z" fill="#55a6b7"/>
+    <path d="M0 300h95c-28 29-8 90 41 90s69-61 41-90h123v110c-28-28-90-8-90 41s62 69 90 41v13H0Z" fill="#d494b0"/>
+    <path d="M300 300h110V178c28 28 90 8 90-41s-62-69-90-41V0h90v505H300v-13c28 28 90 8 90-41s-62-69-90-41Z" fill="#8f85d9"/>
+  </g>
+</svg>

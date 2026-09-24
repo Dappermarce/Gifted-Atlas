@@ -20,7 +20,7 @@ export default function HeroSection() {
       <div 
         className="absolute inset-0 bg-cover bg-center opacity-20"
         style={{
-          backgroundImage: 'url("https://images.unsplash.com/photo-1559757175-0eb30cd8c063?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1920&h=1080")'
+          backgroundImage: 'radial-gradient(circle at 30% 30%, rgba(255,255,255,.5), transparent 22%), radial-gradient(circle at 70% 64%, rgba(255,255,255,.28), transparent 28%)'
         }}
       />
       

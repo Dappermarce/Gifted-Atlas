@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="title desc">
+  <title id="title">Learning and exploration</title>
+  <desc id="desc">Original abstract illustration of a learner connecting ideas.</desc>
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#eee8ff"/><stop offset="1" stop-color="#d7ecff"/></linearGradient></defs>
+  <rect width="800" height="600" rx="42" fill="url(#bg)"/>
+  <circle cx="400" cy="278" r="156" fill="#fff" opacity=".72"/>
+  <path d="M310 273c0-73 54-128 120-128s120 55 120 128c0 45-20 75-52 102-16 14-25 35-27 57h-82c-2-23-11-43-27-57-32-27-52-57-52-102Z" fill="#7651d6"/>
+  <path d="M368 466h124M381 496h98" stroke="#47305f" stroke-width="18" stroke-linecap="round"/>
+  <path d="M430 103V56M300 145l-34-34M560 145l34-34M272 273h-48M588 273h48" stroke="#9b79e3" stroke-width="14" stroke-linecap="round"/>
+  <path d="m384 285 32 32 67-75" fill="none" stroke="#fff" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

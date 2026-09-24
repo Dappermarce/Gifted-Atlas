@@ -21,7 +21,7 @@ export default function PsychiatrySection() {
         interventionText: "La planificación debe basarse en la evaluación individual y puede combinar:",
         interventions: ["Evaluación con varias fuentes e instrumentos apropiados", "Adaptaciones y enriquecimiento educativo", "Apoyo socioemocional basado en necesidades", "Atención de profesionales habilitados cuando corresponda"],
         challengesTitle: "Desafíos Socioemocionales",
-        source: "Fuente:",
+        source: "Fuente:", imgAlt: "Ilustración conceptual de apoyo coordinado e individualizado",
       }
     : {
         title: "Health, wellbeing and twice exceptionality",
@@ -36,7 +36,7 @@ export default function PsychiatrySection() {
         interventionText: "Planning should be based on individual assessment and may combine:",
         interventions: ["Assessment using multiple sources and appropriate instruments", "Educational accommodations and enrichment", "Socioemotional support based on need", "Care from licensed professionals when appropriate"],
         challengesTitle: "Socioemotional Challenges",
-        source: "Source:",
+        source: "Source:", imgAlt: "Conceptual illustration of coordinated individualized support",
       };
 
   const commonConditions = lang === 'es'
@@ -106,10 +106,9 @@ export default function PsychiatrySection() {
             </Card>
           </div>
           <div className="space-y-6">
-            <img src="https://images.pexels.com/photos/8560681/pexels-photo-8560681.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Therapist taking notes during a psychological consultation session" className="rounded-xl shadow-lg w-full h-48 object-cover" />
+            <img src="/illustrations/support.svg" alt={t.imgAlt} className="rounded-xl shadow-lg w-full h-48 object-cover" />
             <p className="text-xs text-gray-400">
-              {t.source}{" "}
-              <a href="https://www.pexels.com/photo/therapist-takes-notes-during-a-counseling-session-with-a-thoughtful-client-8560681/" target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-600">Pexels</a>
+              {t.source} Gifted Atlas · {lang === 'es' ? 'ilustración original' : 'original illustration'}
             </p>
             <Card className="bg-sky-blue/5 border-sky-blue/20">
               <CardContent className="p-6">
