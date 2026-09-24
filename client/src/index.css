@@ -391,14 +391,19 @@ h1, h2, .gifted-index-card strong, .gifted-milestone h3, .atlas-panel-story h2 {
 .atlas-panel-story > span { color: #bca5f5; font-size: 0.62rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; }
 .atlas-panel-story h2 { max-width: 16ch; margin: 0.75rem 0; font-size: 1.65rem; font-weight: 600; line-height: 1.02; }
 .atlas-panel-story p { position: relative; z-index: 2; max-width: 35ch; color: #b7aebf; font-size: 0.76rem; line-height: 1.6; }
-.atlas-thread { position: absolute; right: -20px; bottom: -34px; width: 190px; height: 130px; opacity: 0.42; }
-.atlas-thread i { position: absolute; display: block; width: 10px; height: 10px; border: 2px solid #b69df3; border-radius: 50%; }
+.atlas-thread { --thread-accent: #b69df3; --thread-line: #9877e4; position: absolute; right: -20px; bottom: -34px; width: 190px; height: 130px; opacity: 0.58; }
+.atlas-thread i { position: absolute; display: block; width: 10px; height: 10px; border: 2px solid var(--thread-accent); border-radius: 50%; }
 .atlas-thread i:nth-child(1) { left: 8%; top: 68%; }
 .atlas-thread i:nth-child(2) { left: 40%; top: 24%; }
 .atlas-thread i:nth-child(3) { left: 66%; top: 58%; }
 .atlas-thread i:nth-child(4) { left: 88%; top: 12%; }
-.atlas-thread::before, .atlas-thread::after { content: ''; position: absolute; left: 15%; top: 55%; width: 145px; height: 1px; background: #9877e4; transform: rotate(-18deg); transform-origin: left; }
+.atlas-thread::before, .atlas-thread::after { content: ''; position: absolute; left: 15%; top: 55%; width: 145px; height: 1px; background: var(--thread-line); transform: rotate(-18deg); transform-origin: left; }
 .atlas-thread::after { left: 42%; top: 30%; width: 100px; transform: rotate(22deg); }
+.atlas-thread > span { position: absolute; left: 43%; top: 39%; z-index: 2; display: grid; width: 58px; height: 58px; place-items: center; border: 1px solid color-mix(in srgb, var(--thread-accent) 70%, white); border-radius: 18px; background: rgba(20, 16, 25, 0.88); color: var(--thread-accent); box-shadow: 0 12px 34px rgba(4, 2, 8, 0.34); transform: rotate(-4deg); }
+.atlas-thread-comprender { --thread-accent: #8ec5ff; --thread-line: #5796d8; }
+.atlas-thread-evidencia { --thread-accent: #77dec0; --thread-line: #45ad90; }
+.atlas-thread-identificar { --thread-accent: #ffbd78; --thread-line: #d98942; }
+.atlas-thread-biblioteca { --thread-accent: #f0a6ce; --thread-line: #c96a9e; }
 .atlas-panel-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.55rem; padding-left: 0.2rem; }
 .atlas-panel-links button { display: flex; align-items: flex-end; justify-content: space-between; gap: 0.8rem; min-height: 108px; padding: 1rem; border: 1px solid #2b2531; border-radius: 16px; background: #161319; color: #f7f3fb; text-align: left; transition: background 160ms ease, border-color 160ms ease, transform 160ms ease; }
 .atlas-panel-links button:hover, .atlas-panel-links button:focus-visible { border-color: #7651d6; background: #211a2a; transform: translateY(-2px); }
