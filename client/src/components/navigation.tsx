@@ -1,5 +1,20 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { ArrowUpRight, Brain, ChevronDown, Globe2, Menu, Moon, Search, Sun, X } from "lucide-react";
+import {
+  ArrowUpRight,
+  BookOpen,
+  Brain,
+  BrainCircuit,
+  ChevronDown,
+  ClipboardCheck,
+  Compass,
+  Globe2,
+  Menu,
+  Microscope,
+  Moon,
+  Search,
+  Sun,
+  X,
+} from "lucide-react";
 import { useLanguage } from "@/contexts/language-context";
 
 type NavItem = { id: string; label: string; note: string };
@@ -242,6 +257,17 @@ export default function Navigation() {
   };
 
   const activeGroup = groups.find(group => group.items.some(item => item.id === activeSection))?.id;
+  const groupIcons = {
+    atlas: Compass,
+    comprender: BrainCircuit,
+    evidencia: Microscope,
+    identificar: ClipboardCheck,
+    biblioteca: BookOpen,
+  } as const;
+  const GroupIcon = ({ id }: { id: string }) => {
+    const Icon = groupIcons[id as keyof typeof groupIcons] ?? Compass;
+    return <Icon size={39} strokeWidth={1.65} />;
+  };
 
   return (
     <nav className="atlas-nav" aria-label={lang === "es" ? "Navegación principal" : "Main navigation"}>
@@ -299,7 +325,10 @@ export default function Navigation() {
                   <span>{group.eyebrow}</span>
                   <h2>{group.title}</h2>
                   <p>{group.description}</p>
-                  <div className="atlas-thread" aria-hidden="true"><i /><i /><i /><i /></div>
+                  <div className={`atlas-thread atlas-thread-${group.id}`} aria-hidden="true">
+                    <i /><i /><i /><i />
+                    <span><GroupIcon id={group.id} /></span>
+                  </div>
                 </div>
                 <div className={`atlas-panel-links ${group.items.length === 2 ? "is-compact" : ""} ${group.items.length % 2 === 1 ? "is-odd" : ""}`}>
                   {group.items.map(item => (
