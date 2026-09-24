@@ -35,14 +35,14 @@ export default function IntelligenceTheories() {
         gardnerTitle: "Modelo de Inteligencias Múltiples", gardnerText: "Howard Gardner propuso distintos dominios de capacidad. Es un marco educativo influyente, pero no equivale a una taxonomía psicométrica validada ni debe usarse por sí solo para identificar altas capacidades.",
         sternbergTitle: "Teoría Triárquica (Sternberg)", analytic: "Analítica", analyticDesc: "Resolución de problemas académicos", creative: "Creativa", creativeDesc: "Generación de ideas innovadoras", practical: "Práctica", practicalDesc: "Aplicación en situaciones reales",
         golemanTitle: "Inteligencia Emocional (Goleman)", g1: "Autoconciencia emocional", g2: "Autorregulación emocional", g3: "Empatía y habilidades sociales", g4: "Motivación intrínseca",
-        imgAlt: "Rompecabezas y juegos mentales representando las inteligencias múltiples", source: "Fuente:",
+        imgAlt: "Esquema comparativo de los modelos de Gardner y Sternberg", source: "Esquema original basado en Gardner (1983) y Sternberg (1985); los modelos no son equivalentes.",
       }
     : {
         title: "Theories of Intelligence", subtitle: "Understand the different perspectives on the nature of human intelligence",
         gardnerTitle: "Multiple Intelligences Model", gardnerText: "Howard Gardner proposed distinct domains of ability. It is an influential educational framework, but it is not equivalent to a validated psychometric taxonomy and should not be used alone to identify giftedness.",
         sternbergTitle: "Triarchic Theory (Sternberg)", analytic: "Analytical", analyticDesc: "Academic problem solving", creative: "Creative", creativeDesc: "Generation of innovative ideas", practical: "Practical", practicalDesc: "Application in real situations",
         golemanTitle: "Emotional Intelligence (Goleman)", g1: "Emotional self-awareness", g2: "Emotional self-regulation", g3: "Empathy and social skills", g4: "Intrinsic motivation",
-        imgAlt: "Puzzles and brain teasers representing multiple intelligences", source: "Source:",
+        imgAlt: "Comparative diagram of the Gardner and Sternberg models", source: "Original diagram based on Gardner (1983) and Sternberg (1985); the models are not equivalent.",
       };
 
   return (
@@ -87,7 +87,7 @@ export default function IntelligenceTheories() {
               </CardContent>
             </Card>
             <img src="/illustrations/theories.svg" alt={t.imgAlt} className="rounded-lg shadow-lg w-full h-48 object-cover" />
-            <p className="text-xs text-gray-400">{t.source} Gifted Atlas · {lang === 'es' ? 'ilustración original' : 'original illustration'}</p>
+            <p className="text-xs text-gray-500">{t.source} {lang === 'es' ? 'Referencias completas en la bibliografía.' : 'Full references in the bibliography.'}</p>
           </div>
         </div>
       </div>
